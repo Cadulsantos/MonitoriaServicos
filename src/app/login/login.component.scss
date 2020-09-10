@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(to bottom right, #207ce5, #75bdd1);
+  height: 100vh;
+}
+
+#login .container #login-row #login-column #login-box {
+  margin-top: 140px;
+  position:absolute;
+  margin-left:-13%;
+  left:50%;
+  max-width: 400px;
+  height: 320px;
+  border: 1px solid #E3F4F4;
+  background-color: #EAEAEA;
+  // opacity: 0.8;
+  border-radius: 10px;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+
+
+
+
+
