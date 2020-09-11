@@ -1,12 +1,12 @@
 export class usuario{
   id: string;
-  Login: string;
-	Senha: string;
-	Nome: string;
-	Email: string;
-	Ativo: boolean;
-	IsAdmin: boolean;
-	Perfil: Int16Array;
-	DataCadastro : Date;
+  login: string;
+	senha: string;
+	nome: string;
+	email: string;
+	ativo: boolean;
+	isAdmin: boolean;
+	perfil: Int16Array;
+	dataCadastro : Date;
 	// ProjetosMonitoria:
 }

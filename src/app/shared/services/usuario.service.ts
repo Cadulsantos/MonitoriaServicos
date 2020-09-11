@@ -1,7 +1,7 @@
+import { usuario } from './../Model/usuario';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpBackend } from '@angular/common/http';
 import { ApiProvider } from './../providers/api';
-import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +10,19 @@ export class UsuarioService {
 
   private _CONTROLLER = "Usuario";
 
-  constructor(public http: HttpClient, private api: ApiProvider) { }
+private http : HttpClient ;
 
-  autenticacaoUsuario(usuario: object)
+  constructor(
+    public httpClient: HttpClient,
+    public httpBackEnd: HttpBackend,
+    private api: ApiProvider,
+    ) {
+      this.http = new HttpClient(this.httpBackEnd);
+    }
+
+  autenticacaoUsuario(usuario: usuario)
   {
-    return this.http.post(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario).pipe(take(1));
-
+    console.log(`${usuario.login}, ${usuario.senha}`)
+    return this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario);
   }
 }

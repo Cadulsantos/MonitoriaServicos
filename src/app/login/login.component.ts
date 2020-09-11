@@ -1,4 +1,8 @@
+import { usuario } from './../shared/Model/usuario';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+import { FormBuilder, Validators } from '@angular/forms';
+import { UsuarioService } from '../shared/services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -7,36 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  login: string = "";
-  senha: string = "";
+  usuario: usuario;
 
-  usuario: any;
+  loginForms = this.fb.group({
+    login: ["", Validators.required],
+    senha: ["", Validators.required]
+  });
 
-  constructor() { }
+  constructor(private fb: FormBuilder,private usuarioService: UsuarioService) { }
+
 
   ngOnInit(): void {
   }
 
   onAutenticacaoLogin(){
-    this.usuario = this.validarCampoLogin(this.login, this.senha);
-
-    console.log("Login: " + this.login);
-    console.log("Senha: " + this.senha);
-
-  }
-
-  validarCampoLogin( login: string, senha: string)
-  {
-    if(login == null || login == "")
+    // this.validarCampoLogin(this.usuario);
+    if(this.loginForms.invalid)
     {
-
+      Swal.fire('Campo de Login ou senha inválidos!')
     }
 
-    if(senha == null || senha == "")
-    {
-
-    }
-
+    this.usuarioService.autenticacaoUsuario({...this.loginForms.value})
   }
+
+  // validarCampoLogin( usuario: usuario)
+  // {
+
+  // }
 
 }
