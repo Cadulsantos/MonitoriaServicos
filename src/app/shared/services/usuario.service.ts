@@ -10,7 +10,7 @@ export class UsuarioService {
 
   private _CONTROLLER = "Usuario";
 
-private http : HttpClient ;
+  private http : HttpClient ;
 
   constructor(
     public httpClient: HttpClient,
@@ -22,7 +22,9 @@ private http : HttpClient ;
 
   autenticacaoUsuario(usuario: usuario)
   {
-    console.log(`${usuario.login}, ${usuario.senha}`)
-    return this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario);
+    // console.log(usuario)
+    return this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario).pipe();
+
+    // return this.httpClient.post(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario);
   }
 }

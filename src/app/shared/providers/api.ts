@@ -10,9 +10,16 @@ export class ApiProvider {
   constructor() { }
 
   request(controller, method, param = '') {
-      return environment.baseUrl +
+
+    console.log(environment.baseUrl +
+      controller + '/' +
+      method +
+      (param !== '' ? ('/' + param) : ''));
+
+    return environment.baseUrl +
       controller + '/' +
       method +
       (param !== '' ? ('/' + param) : '');
+
   }
 }
