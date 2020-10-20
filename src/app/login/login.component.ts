@@ -32,18 +32,20 @@ export class LoginComponent implements OnInit {
 
   onAutenticacaoLogin(){
 
+    this.route.navigate(['/home']);
     if(this.loginForms.invalid)
     {
       Swal.fire('Campo de Login ou senha inválidos!')
     }
 
-   this.usuarioService.autenticacaoUsuario({...this.loginForms.value}).subscribe(
-     usua => {
-      this.usuario = usua;
-      localStorage.setItem('Token', this.usuario.login);
-      this.route.navigate(['/home']);
-     }
-   );
+
+  //  this.usuarioService.autenticacaoUsuario({...this.loginForms.value}).subscribe(
+  //    usua => {
+  //     this.usuario = usua;
+  //     localStorage.setItem('Token', this.usuario.login);
+  //     this.route.navigate(['/home']);
+  //    }
+  //  );
 
   }
 
