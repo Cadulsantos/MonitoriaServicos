@@ -39,13 +39,13 @@ export class LoginComponent implements OnInit {
     }
 
 
-  //  this.usuarioService.autenticacaoUsuario({...this.loginForms.value}).subscribe(
-  //    usua => {
-  //     this.usuario = usua;
-  //     localStorage.setItem('Token', this.usuario.login);
-  //     this.route.navigate(['/home']);
-  //    }
-  //  );
+   this.usuarioService.autenticacaoUsuario({...this.loginForms.value}).subscribe(
+     usua => {
+      this.usuario = usua;
+      localStorage.setItem('Token', this.usuario.login);
+      this.route.navigate(['/home']);
+     }
+   );
 
   }
 

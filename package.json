@@ -23,7 +23,6 @@
     "@angular/router": "~10.1.0",
     "bootstrap": "^5.0.0-alpha1",
     "jquery": "^3.5.1",
-    "materialize-css": "^0.100.2",
     "rxjs": "~6.6.3",
     "sweetalert2": "^10.0.2",
     "tether": "^1.4.7",
