@@ -1,5 +1,7 @@
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
+import { catchError, map } from "rxjs/operators";
+import { from, Observable, throwError } from 'rxjs';
 
 import { ApiProvider } from './../providers/api';
 import { usuario } from './../Model/usuario';
@@ -34,28 +36,32 @@ export class AuthService {
   autenticacao(usuario: any) : any
   {
     console.log("autenticacao");
-    var authUsua : any;
+    // var authUsua : any;
 
-    // this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario)
+    return this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario);
     // .pipe(
-    //   Map((usua : usuario)=>{
-    //     return usua;
+    //   map((usua  : any) => {
+    //     console.log(usua);
     //   })
+    // ), catchError( error => {
+    //   return throwError( error.error );
+    // });
+
+    // this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario).pipe().subscribe(
+    //   usua => {
+    //     // console.log(usua);
+    //    return usua;
+
+    //   },(error) =>{
+    //     console.log(error.error)
+    //     // this.mostrarMenuEmitter.emit(false);
+    //     return null;
+    //   }
     // );
 
-    this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario).pipe().subscribe(
-      usua => {
-        authUsua = usua;
-        console.log(authUsua);
-      },(error) =>{
-        console.log(error.error)
-        // this.mostrarMenuEmitter.emit(false);
-        return null;
-      }
-    );
-
-      return authUsua;
+      // return authUsua;
   }
+
 
 
 }

@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
   private VerificarAcesso(){
 
     const token = JSON.parse(localStorage.getItem('Token'));
-    
+
     var dif = calculateDiff(token.data);
 
     console.log(token);

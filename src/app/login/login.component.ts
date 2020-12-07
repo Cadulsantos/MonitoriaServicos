@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from './../shared/services/auth-service';
+import { AuthService } from './../shared/services/auth.service';
 import { UsuarioService } from '../shared/services/usuario.service';
 import { usuario } from './../shared/Model/usuario';
 
@@ -41,30 +41,32 @@ export class LoginComponent implements OnInit {
       Swal.fire('Campo de Login ou senha inválidos!');
     }
 
-    console.log(this.authService.autenticacao({...this.loginForms.value}));
-    // this.usuario = this.authService.autenticacao({...this.loginForms.value});
+    // console.log(this.authService.autenticacao({...this.loginForms.value}));
+    //  this.usuario = this.authService.autenticacao({...this.loginForms.value});
 
-    console.log(this.usuario);
+    // console.log(this.usuario);
 
-    if(this.usuario != null)
-    {
-      localStorage.setItem('Token', this.usuario.login);
+    // if(this.usuario != null)
+    // {
+    //   localStorage.setItem('Token', this.usuario.login);
+    //   this.authService.mostrarMenuEmitter.emit(true);
+    //   this.route.navigate(['/home']);
+    // }
+    // else{
+    //   Swal.fire("Usuário não encontrado!");
+    // }
+
+   this.authService.autenticacao({...this.loginForms.value}).subscribe(
+     (usua : any) => {
+       console.log(usua);
+      // this.usuario = usua;
+      localStorage.setItem('Token', JSON.stringify({ login : usua.login, data : new Date()}));
       this.authService.mostrarMenuEmitter.emit(true);
       this.route.navigate(['/home']);
-    }
-    else{
-      Swal.fire("Usuário não encontrado!");
-    }
-  //  this.authService.autenticacao({...this.loginForms.value}).subscribe(
-  //    usua => {
-  //     this.usuario = usua;
-  //     localStorage.setItem('Token', this.usuario.login);
-  //     this.authService.mostrarMenuEmitter.emit(true);
-  //     this.route.navigate(['/home']);
-  //    },(error) => {
-  //       Swal.fire(error.error);
-  //    }
-  //  );
+     },(error) => {
+        Swal.fire(error.error);
+     }
+   );
 
   }
 
