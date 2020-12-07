@@ -1,10 +1,11 @@
-import { usuario } from './../shared/Model/usuario';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UsuarioService } from '../shared/services/usuario.service';
 import { Router } from '@angular/router';
 
+import { AuthService } from './../shared/services/auth-service';
+import { UsuarioService } from '../shared/services/usuario.service';
+import { usuario } from './../shared/Model/usuario';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   usuario: usuario;
   retorno : any;
 
+
   loginForms = this.fb.group({
     login: ["", Validators.required],
     senha: ["", Validators.required]
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
+    private authService: AuthService,
     private route: Router) { }
 
 
@@ -32,20 +35,36 @@ export class LoginComponent implements OnInit {
 
   onAutenticacaoLogin(){
 
-    this.route.navigate(['/home']);
+    // this.route.navigate(['/home']);
     if(this.loginForms.invalid)
     {
-      Swal.fire('Campo de Login ou senha inválidos!')
+      Swal.fire('Campo de Login ou senha inválidos!');
     }
 
+    console.log(this.authService.autenticacao({...this.loginForms.value}));
+    // this.usuario = this.authService.autenticacao({...this.loginForms.value});
 
-   this.usuarioService.autenticacaoUsuario({...this.loginForms.value}).subscribe(
-     usua => {
-      this.usuario = usua;
+    console.log(this.usuario);
+
+    if(this.usuario != null)
+    {
       localStorage.setItem('Token', this.usuario.login);
+      this.authService.mostrarMenuEmitter.emit(true);
       this.route.navigate(['/home']);
-     }
-   );
+    }
+    else{
+      Swal.fire("Usuário não encontrado!");
+    }
+  //  this.authService.autenticacao({...this.loginForms.value}).subscribe(
+  //    usua => {
+  //     this.usuario = usua;
+  //     localStorage.setItem('Token', this.usuario.login);
+  //     this.authService.mostrarMenuEmitter.emit(true);
+  //     this.route.navigate(['/home']);
+  //    },(error) => {
+  //       Swal.fire(error.error);
+  //    }
+  //  );
 
   }
 

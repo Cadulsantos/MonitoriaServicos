@@ -12,6 +12,8 @@ export class UsuarioService {
 
   private http : HttpClient ;
 
+  usuario : usuario;
+
   constructor(
     public httpClient: HttpClient,
     public httpBackEnd: HttpBackend,
@@ -20,11 +22,14 @@ export class UsuarioService {
       this.http = new HttpClient(this.httpBackEnd);
     }
 
-  autenticacaoUsuario(usuario: usuario)
-  {
-    // console.log(usuario)
-    return this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario).pipe();
+  // autenticacaoUsuario(usuario: usuario)
+  // {
+  //   // console.log(usuario)
+  //   var variavel = this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario).pipe();
 
-    // return this.httpClient.post(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario);
-  }
+  //   console.log(variavel);
+
+  //   return this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario).pipe();;
+  //   // return this.httpClient.post(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario);
+  // }
 }
