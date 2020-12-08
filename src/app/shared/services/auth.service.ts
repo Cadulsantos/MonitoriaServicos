@@ -39,27 +39,7 @@ export class AuthService {
     // var authUsua : any;
 
     return this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario);
-    // .pipe(
-    //   map((usua  : any) => {
-    //     console.log(usua);
-    //   })
-    // ), catchError( error => {
-    //   return throwError( error.error );
-    // });
 
-    // this.http.post<usuario>(this.api.request(this._CONTROLLER, "AutenticacaoUsuario"), usuario).pipe().subscribe(
-    //   usua => {
-    //     // console.log(usua);
-    //    return usua;
-
-    //   },(error) =>{
-    //     console.log(error.error)
-    //     // this.mostrarMenuEmitter.emit(false);
-    //     return null;
-    //   }
-    // );
-
-      // return authUsua;
   }
 
 

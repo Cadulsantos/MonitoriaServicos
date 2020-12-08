@@ -29,13 +29,14 @@ export class AuthGuard implements CanActivate {
 
   private VerificarAcesso(){
 
-    const token = JSON.parse(localStorage.getItem('Token'));
+    const token = localStorage.getItem('Token');
 
-    var dif = calculateDiff(token.data);
+    // var dif = calculateDiff(token.data);
 
-    console.log(token);
+    console.log(JSON.parse(localStorage.getItem('Token')));
 
     if(token){
+      this.authService.mostrarMenuEmitter.emit(true);
       return true;
     }
 
@@ -49,11 +50,11 @@ export class AuthGuard implements CanActivate {
 
   }
 
-    calculateDiff(dateSent){
-    let currentDate = new Date();
-    dateSent = new Date(dateSent);
+  //   calculateDiff(dateSent){
+  //   let currentDate = new Date();
+  //   dateSent = new Date(dateSent);
 
-    return Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) ) /(1000 * 60 * 60 * 24));
-  }
+  //   return Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) ) /(1000 * 60 * 60 * 24));
+  // }
 
 }

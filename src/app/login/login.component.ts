@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.authService.mostrarMenuEmitter.emit(false);
   }
 
   onAutenticacaoLogin(){
@@ -40,21 +41,6 @@ export class LoginComponent implements OnInit {
     {
       Swal.fire('Campo de Login ou senha inválidos!');
     }
-
-    // console.log(this.authService.autenticacao({...this.loginForms.value}));
-    //  this.usuario = this.authService.autenticacao({...this.loginForms.value});
-
-    // console.log(this.usuario);
-
-    // if(this.usuario != null)
-    // {
-    //   localStorage.setItem('Token', this.usuario.login);
-    //   this.authService.mostrarMenuEmitter.emit(true);
-    //   this.route.navigate(['/home']);
-    // }
-    // else{
-    //   Swal.fire("Usuário não encontrado!");
-    // }
 
    this.authService.autenticacao({...this.loginForms.value}).subscribe(
      (usua : any) => {
