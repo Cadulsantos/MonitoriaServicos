@@ -40,6 +40,9 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
+    this.route.navigate(['login']);
+    return false;
+
     // if(this.authService.usuarioAuth() === true){
     //   this.authService.mostrarMenuEmitter.emit(true);
     //   return  true;
