@@ -1,10 +1,103 @@
 <div class="d-flex " style="height: 100%;">
- <div class="bg-primary py-2" style="width : 100%; height: 100%;">
+ <div class="py-2" style="width : 100%; height: 100%;">
 
+  <div class="container">
+    <table class="table table-sm table-dark">
+      <div class="table-responsive">
+        <table class="table align-middle" >
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <!-- <th scope="col">Periodicidade</th>
+              <th scope="col">Descrição</th> -->
+              <th scope="col">Status</th>
+              <th scope="col" style="width: 15%;">Ultima Execução</th>
+              <th scope="col" style="width: 13%;">Logs de Erro</th>
+              <th scope="col" style="width: 13%;">Logs de Execução</th>
+              <th scope="col"> Configurações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of servicosShare" >
+              <td>{{ item.nomeArgument}}</td>
+              <td>
+                <span class="badge badge-success badge-primary" *ngIf="item.ativo == true">Ativo</span>
+                <span class="badge badge-danger" *ngIf="item.ativo == false">Inativo</span>
+              </td>
+              <td>{{ item.dataInicio }}</td>
+              <td class="text-center">
+                <button type="button" class="btn btn-danger" (click)="logsErroServicoOnClick(item)"><i>Visualizar <span class="badge badge-light">{{ item.quantidadeErros }}</span></i></button>
+              </td>
+              <td class="text-center">
+                <button type="button" class="btn btn-info" (click)="logsExecucaoServicoOnClick(item)"><i>Execuções</i></button>
+              </td>
+              <td>
+                <!-- <img style="width: 45px;" tooltip="Editar" (click)="editaServico(item)" class="btn btn-outline-dark" src="assets/img/edit.png" /> -->
+                <i class="fas fa-cog" (click)="editaServicoOnClick(item)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </table>
+
+  </div>
  </div>
- <div [ngClass]="{'bgsize20': abreFiltro, 'bgsize0': !abreFiltro}"
-    class="bg-secondary py-2 " >
-  <!-- <button type="button" class="btn btn-dark" (click)="abreFiltroOnClick()" >Dark</button> -->
-  <i class="find_in_page" (click)="abreFiltroOnClick()" >example</i>
+
+ <div data-bs-toggle="tooltip" title="Disabled tooltip">
+  <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Disabled tooltip">
+    <button type="button" class="btn-circle fas fa-search" (click)="abreFiltroOnClick()" tooltip=" Filtrar Serviços "></button>
+  </span>
+</div>
+
+ <div class="py-2" [ngClass]="{'filterSize20': abreFiltro, 'filterSize0': !abreFiltro}" [style.visibility]="abreFiltro ? 'visible' : 'hidden'">
+    <div class="container-fluid">
+      <div class="row">
+
+
+        <div class="col-12 form-group">
+          <label >Nome do Serviço</label>
+          <input type="text" class="form-control" formControlName="nomeArgument"  placeholder="Ex: AtualizaAndamentosBigData">
+        </div>
+
+          <!-- <div class="btn-group col-12" dropdown placement="bottom right">
+            <button id="button-alignment" dropdownToggle type="button"
+                    class="btn btn-primary dropdown-toggle" aria-controls="dropdown-alignment">
+              This dropdown's menu is right-aligned <span class="caret"></span>
+            </button>
+            <ul id="dropdown-alignment" *dropdownMenu class="dropdown-menu dropdown-menu-right"
+                role="menu" aria-labelledby="button-alignment">
+              <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+              <li class="divider dropdown-divider"></li>
+              <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+          </div> -->
+
+        <div class="col-12 form-group">
+          <label > Status do Serviço  </label>
+          <select  id="statusServico"  class="form-control"
+          formControlName="statusServico">
+            <option value="" selected> Ambos </option>
+            <option value="ativo" selected> Ativo </option>
+            <option value="inativo"> Inativo </option>
+            </select>
+        </div>
+
+        <div class="col-12 form-group">
+          <label > Erros </label>
+          <select id="statusErro" class="form-control"
+          formControlName="erro">
+            <option value="" selected> Ambos </option>
+            <option value="sim"> Sim </option>
+            <option value="nao"> Não </option>
+          </select>
+        </div>
+          <div class="col-12">
+            <button type="button" class="btn btn-dark">Filtrar</button>
+          </div>
+      </div>
+    </div>
  </div>
 </div>
