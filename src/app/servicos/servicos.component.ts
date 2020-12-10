@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicosComponent implements OnInit {
 
+  abreFiltro: boolean = false
   constructor() { }
 
   ngOnInit(): void {
   }
+
+abreFiltroOnClick(){
+  this.abreFiltro = !this.abreFiltro;
+  console.log(this.abreFiltro);
+}
 
 }
