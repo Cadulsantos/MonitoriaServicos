@@ -18,10 +18,16 @@ import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { LogErroServicoComponent } from './log-erro-servico/log-erro-servico.component';
+import { LogExecucaoServicoComponent } from './log-execucao-servico/log-execucao-servico.component';
+import { ConfiguracaoServicoComponent } from './configuracao-servico/configuracao-servico.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LogErroServicoComponent,
+    LogExecucaoServicoComponent,
+    ConfiguracaoServicoComponent
     // LoginComponent
     // HomeComponent
   ],

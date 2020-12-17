@@ -1,0 +1,32 @@
+
+<div class="modal-header d-flex justify-content-center border-0">
+
+  <h4 class="modal-title pull-left"> Logs de Execução : {{servico.nomeArgument}}</h4>
+
+  <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body ">
+  <div style="margin: 50px 0px 0px 0px; width: 90%; font-size: medium;" class="mx-auto">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" class="text-center">Nome</th>
+          <th scope="col" class="text-center">Data Inicio</th>
+          <th scope="col" class="text-center">Data Fim</th>
+          <th scope="col" class="text-center">Tempo de Execução</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of logsExecucao">
+          <td class="text-center">{{ item.nomeServico}}</td>
+          <td class="text-center">{{ item.dataInicio }}</td>
+          <td class="text-center">{{ item.dataFim }}</td>
+          <td class="text-center">{{ item.tempoExecucao }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

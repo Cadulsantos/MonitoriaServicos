@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ApiProvider } from '../providers/api';
 
 import { servico } from '../Model/servico';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,12 @@ export class ServicosService {
   getServicos(){
     return this.http.get<servico[]>(
       this.api.request(this._CONTROLLER, "GetServicos"));
+    }
+
+    alterarServico(servico : servico)
+    {
+      console.log(servico);
+      return this.http.post(this.api.request(this._CONTROLLER, "AtualizaServico"), servico).pipe(take(1));
     }
 
 }

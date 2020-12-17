@@ -1,0 +1,65 @@
+<div class="modal-header d-flex justify-content-center border-0">
+  <h4 class="modal-title pull-left"> Editar Serviço: {{servico.nomeArgument}}</h4>
+
+  <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body d-flex flex-column">
+  <form [formGroup]="formServico" (ngSubmit)="openConfirmAlter(confirmAlter)" >
+    <div class="form-group" >
+      <label for="nomeServico"> Nome do Serviço: </label>
+      <input
+       type="text" class="form-control"  style="margin-left: 5px;"
+          id="nomeServico" formControlName="nomeServico">
+    </div>
+
+    <div class="form-group" >
+      <label for="statusServico"> Status: </label>
+    <select id="statusServico" formControlName="statusServico" class="form-control">
+        <option value="true" > Ativo </option >
+          <option value="false" > Inativo </option >
+      </select>
+    </div>
+
+    <div class="form-group" >
+      <label for="periodicidade"> Periodicidade: </label>
+      <input
+       type="text" class="form-control" style="margin-left: 5px;"
+        id="periodicidade"  formControlName="periodicidade">
+    </div>
+
+    <div class="form-group" >
+      <label for="descricao"> Descrição: </label>
+      <textarea class="form-control"  id="descricao"  formControlName="descricao" rows="2"></textarea>
+    </div>
+
+    <button  class="btn btn-primary">Salvar</button>
+
+  </form>
+</div>
+
+<ng-template #confirmAlter >
+  <div class="modal-header header">
+    <h4 class="modal-title pull-left"> Deseja mesmo alterar esse serviço?</h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="width: 100%;">
+    <tr class="d-flex justify-content-around">
+      <td>
+        <button type="button" class="btn btn-success" (click)="SalvaAlteracoes()" ><i>Sim</i></button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="modalRef.hide()"><i>Não</i></button>
+      </td>
+    </tr>
+  </div>
+</ng-template>
