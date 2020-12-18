@@ -15,3 +15,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding-right: 0;
   padding-left: 0;
 }
+
+
+.modal-logExecucao{
+  max-width: 80%;
+}
+
+.modal-alteraSevico{
+  max-width: 50%;
+}
+
+
+/* SWAL2 ------------------------------------------ */
+.swal2-height-auto {
+  padding-right: 0 !important;
+}

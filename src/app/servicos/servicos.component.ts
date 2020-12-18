@@ -140,7 +140,7 @@ export class ServicosComponent implements OnInit {
       animated: true,
       backdrop: true,
       ignoreBackdropClick: true,
-      class: "modal-dialog-centered modal-logExecucao",
+      class: "modal-dialog-centered modal-lg",
       initialState: {
         servico: servico
       }
@@ -156,7 +156,7 @@ export class ServicosComponent implements OnInit {
       backdrop: true,
       ignoreBackdropClick: true,
       keyboard: true,
-      class: "modal-dialog-centered modal-logExecucao",
+      class: "modal-dialog-centered modal-lg",
       initialState: {
         servico: servico
       }
