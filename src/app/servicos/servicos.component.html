@@ -109,8 +109,8 @@
   >
     <div class="container-fluid">
       <div class="row">
-        <form [formGroup]="filtroServico" >
-          <div class="col-12 form-group">
+        <form [formGroup]="filtroServico" class="form" (ngSubmit)="filtra()" >
+          <div class="col-12 form-group" class="form-group">
             <label>Nome do Serviço</label>
             <input
               type="text"
@@ -120,7 +120,7 @@
             />
           </div>
 
-          <div class="col-12 form-group">
+          <div class="col-12 " class="form-group">
             <label> Status do Serviço </label>
             <select
               id="statusServico"
@@ -133,7 +133,7 @@
             </select>
           </div>
 
-          <div class="col-12 form-group">
+          <div class="col-12" class="form-group">
             <label> Erros </label>
             <select id="statusErro" class="form-control" formControlName="erro">
               <option value="" selected>Ambos</option>
@@ -142,8 +142,8 @@
             </select>
           </div>
 
-          <div class="col-12 form-group">
-            <button type="button" class="btn btn-dark" (click)="filtra()">Buscar</button>
+          <div class="col-12" class="form-group">
+            <button type="submit" class="btn btn-dark"  >Buscar</button>
           </div>
         </form>
       </div>

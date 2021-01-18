@@ -1,64 +1,67 @@
-<div class="modal-header d-flex justify-content-center border-0">
+<div>
+  <div class="modal-header d-flex justify-content-center border-0">
 
-  <h4 class="modal-title pull-left"> Logs de Erro : {{servico.nomeArgument}}</h4>
+    <h4 class="modal-title pull-left"> Logs de Erro : {{servico.nomeArgument}}</h4>
 
-  <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-
-<div class="modal-body d-flex flex-column">
-  <div style="margin: 50px 0px 0px 0px; width: 90%; font-size: medium;" class="mx-auto">
-    <table class="table table-striped">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Messagem</th>
-          <th scope="col" style="width: 15%;" class="text-center">Data do Erro</th>
-          <th scope="col" class="text-center">Quantidade</th>
-          <th scope="col" class="text-center">Resolvido</th>
-          <!-- <th scope="col"> </th> -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of logsErro">
-          <td>{{ item.message}}</td>
-          <td class="text-center">{{ item.dataErro}}</td>
-          <td class="text-center">{{ item.quantidade}}</td>
-          <!-- <td>{{ item.resolvido}}</td> -->
-          <td class="text-center">
-            <!-- <button type="button" (click)="resolverLog(item)" *ngIf="item.resolvido == true" class="btn btn-success">RESOLVIDO</button> -->
-            <img style="width: 25px" *ngIf="item.resolvido == true" src="assets/img/green_check.png" />
-            <!-- <button type="button" (click)="resolverLog(item)" *ngIf="item.resolvido == false" class="btn btn-danger">RESOLVER </button> -->
-            <button type="button" (click)="openConfirmResolv(confirmResolv, item)" *ngIf="item.resolvido == false" class="btn btn-danger">RESOLVER </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
-
-<ng-template #confirmResolv >
-  <div class="modal-header header">
-    <h4 class="modal-title pull-left"> Deseja mesmo marcar esse erro como resolvido?</h4>
-    <button
-      type="button"
-      class="close pull-right"
-      aria-label="Close"
-      (click)="modalRef.hide()"
-    >
+    <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body" style="width: 100%;">
-    <tr class="d-flex justify-content-around">
-      <td>
-        <button type="button" class="btn btn-success" (click)="resolverLog()" ><i>Sim</i></button>
-      </td>
-      <td>
-        <button type="button" class="btn btn-danger" (click)="modalRef.hide()"><i>Não</i></button>
-      </td>
-    </tr>
+
+  <div class="modal-body d-flex flex-column">
+    <div style="margin: 50px 0px 0px 0px; width: 90%; font-size: medium;" class="mx-auto">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Messagem</th>
+            <th scope="col" style="width: 15%;" class="text-center">Data do Erro</th>
+            <th scope="col" class="text-center">Quantidade</th>
+            <th scope="col" class="text-center">Resolvido</th>
+            <!-- <th scope="col"> </th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of logsErro">
+            <td>{{ item.message}}</td>
+            <td class="text-center">{{ item.dataErro}}</td>
+            <td class="text-center">{{ item.quantidade}}</td>
+            <!-- <td>{{ item.resolvido}}</td> -->
+            <td class="text-center">
+              <!-- <button type="button" (click)="resolverLog(item)" *ngIf="item.resolvido == true" class="btn btn-success">RESOLVIDO</button> -->
+              <img style="width: 25px" *ngIf="item.resolvido == true" src="assets/img/green_check.png" />
+              <!-- <button type="button" (click)="resolverLog(item)" *ngIf="item.resolvido == false" class="btn btn-danger">RESOLVER </button> -->
+              <button type="button" (click)="openConfirmResolv(confirmResolv, item)" *ngIf="item.resolvido == false" class="btn btn-danger">RESOLVER </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</ng-template>
+
+
+
+  <ng-template #confirmResolv >
+    <div class="modal-header header">
+      <h4 class="modal-title pull-left"> Deseja mesmo marcar esse erro como resolvido?</h4>
+      <button
+        type="button"
+        class="close pull-right"
+        aria-label="Close"
+        (click)="modalRef.hide()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="width: 100%;">
+      <tr class="d-flex justify-content-around">
+        <td>
+          <button type="button" class="btn btn-success" (click)="resolverLog()" ><i>Sim</i></button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="modalRef.hide()"><i>Não</i></button>
+        </td>
+      </tr>
+    </div>
+  </ng-template>
+
+</div>

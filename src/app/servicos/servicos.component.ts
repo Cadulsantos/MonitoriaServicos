@@ -132,8 +132,7 @@ export class ServicosComponent implements OnInit {
   logsErroServicoOnClick(servico: servico) {
 
     this.modalService.onHidden.pipe(take(1)).subscribe((res: any) => {
-      this.getServicos();
-      this.criarFiltroServicos();
+      this.filtra();
     });
 
     this.modalRef = this.modalService.show(LogErroServicoComponent, {
