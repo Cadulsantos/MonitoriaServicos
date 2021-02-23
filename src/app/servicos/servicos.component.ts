@@ -93,8 +93,9 @@ export class ServicosComponent implements OnInit {
         // this.servicosShare = servicos.filter(x => x.ativo == true);
 
         if (dadosFiltro.nomeArgument != "")
-          this.servicosShare = this.servicos.filter((x: servico) =>
-            x.nomeArgument.includes(dadosFiltro.nomeArgument)
+          this.servicosShare = this.servicos.filter(
+            (x: servico) => x.nomeArgument.includes(dadosFiltro.nomeArgument),
+            console.log(dadosFiltro.nomeArgument)
           );
 
         if (dadosFiltro.statusServico == "ativo")
