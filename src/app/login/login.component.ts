@@ -27,11 +27,14 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private authService: AuthService,
-    private route: Router) { }
+    private route: Router) {
+
+      this.authService.mostrarMenuEmitter.emit(false);
+     }
 
 
   ngOnInit(): void {
-    this.authService.mostrarMenuEmitter.emit(false);
+    // this.authService.mostrarMenuEmitter.emit(false);
   }
 
   onAutenticacaoLogin(){

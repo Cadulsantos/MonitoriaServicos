@@ -21,6 +21,10 @@ logErrosServico : logErroServico;
 
   }
 
+  solucionarErroServico(idServico: string){
+    return this.http.get(this.api.request(this._CONTROLLER, "GetSolucionarErrosServico", idServico));
+  }
+
   atualizaStatusLog(logErro : any)
   {
     return this.http.post(this.api.request(this._CONTROLLER, "AtualizaStatusLog"), logErro).pipe(take(1));

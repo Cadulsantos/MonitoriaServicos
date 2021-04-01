@@ -16,12 +16,15 @@ export class ServicosService {
   getServicos(){
     return this.http.get<servico[]>(
       this.api.request(this._CONTROLLER, "GetServicos"));
-    }
+  }
 
-    alterarServico(servico : servico)
-    {
-      console.log(servico);
-      return this.http.post(this.api.request(this._CONTROLLER, "AtualizaServico"), servico).pipe(take(1));
-    }
+  getServicosFiltro(servico : any){
+    return this.http.post<servico[]>(this.api.request(this._CONTROLLER, "GetServicosFiltro"), servico);
+  }
+
+  alterarServico(servico : servico){
+    // console.log(servico);
+    return this.http.post(this.api.request(this._CONTROLLER, "AtualizaServico"), servico).pipe(take(1));
+  }
 
 }

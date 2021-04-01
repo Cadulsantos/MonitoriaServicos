@@ -76,4 +76,13 @@ export class LogErroServicoComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
     this.logErroServico = logErroServico;
   }
+
+  resolverTodosErros(){
+    Loading.show();
+
+    this.logErroService.solucionarErroServico(this.logErroServico.servicoId).subscribe((x) => console.log(x));
+    this.bsModalRef.hide();
+    Loading.hide();
+
+  }
 }

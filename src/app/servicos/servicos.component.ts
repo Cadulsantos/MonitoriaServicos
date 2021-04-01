@@ -83,47 +83,84 @@ export class ServicosComponent implements OnInit {
   }
 
   filtra() {
-    const dadosFiltro = this.filtroServico.value;
-
     Loading.show();
-    this.servicoService.getServicos().subscribe(
+    const dadosFiltro = this.filtroServico.value;
+    let filtroServico: any = {};
+
+    // this.servicosShare = servicos.filter(x => x.ativo == true);
+
+    console.log(dadosFiltro);
+
+    filtroServico.nomeArgument = dadosFiltro.nomeArgument
+
+    if (dadosFiltro.statusServico == "ativo")
+      filtroServico.ativo = true;
+    else if (dadosFiltro.statusServico == "inativo")
+      filtroServico.ativo = false;
+
+    if (dadosFiltro.erro == "sim")
+    filtroServico.erro = true;
+    else if (dadosFiltro.erro == "nao")
+      filtroServico.erro = false;
+
+    // console.log(filtroServico);
+
+    this.servicoService.getServicosFiltro(filtroServico).subscribe(
       (servicos) => {
-        // console.log(servicos);
-        this.servicos = servicos;
-        // this.servicosShare = servicos.filter(x => x.ativo == true);
 
-        if (dadosFiltro.nomeArgument != "")
-          this.servicosShare = this.servicos.filter(
-            (x: servico) => x.nomeArgument.includes(dadosFiltro.nomeArgument),
-            console.log(dadosFiltro.nomeArgument)
-          );
-
-        if (dadosFiltro.statusServico == "ativo")
-          this.servicosShare = this.servicos.filter(
-            (x: servico) => x.ativo == true
-          );
-        else if (dadosFiltro.statusServico == "inativo")
-          this.servicosShare = this.servicos.filter(
-            (x: servico) => x.ativo == false
-          );
-
-        if (dadosFiltro.erro == "sim")
-          this.servicosShare = this.servicos.filter(
-            (x: servico) => x.quantidadeErros != "0"
-          );
-        else if (dadosFiltro.erro == "nao")
-          this.servicosShare = this.servicos.filter(
-            (x: servico) => x.quantidadeErros == "0"
-          );
+      // this.servicos = servicos;
+        this.servicosShare = servicos;
 
         Loading.hide();
       },
       (erro) => Loading.hide()
     );
 
-    // console.log( this.servicosShare);
-    // this.servicosShare = this.servicos;
   }
+
+  //////// FILTRO 31/03/2021 ////////
+  // filtra() {
+  //   const dadosFiltro = this.filtroServico.value;
+
+  //   Loading.show();
+  //   this.servicoService.getServicos().subscribe(
+  //     (servicos) => {
+  //       // console.log(servicos);
+  //       this.servicos = servicos;
+  //       // this.servicosShare = servicos.filter(x => x.ativo == true);
+
+  //       if (dadosFiltro.nomeArgument != "")
+  //         this.servicosShare = this.servicos.filter(
+  //           (x: servico) => x.nomeArgument.toLowerCase().includes(dadosFiltro.nomeArgument.toLowerCase()),
+  //           console.log(dadosFiltro.nomeArgument)
+  //         );
+
+  //       if (dadosFiltro.statusServico == "ativo")
+  //         this.servicosShare = this.servicos.filter(
+  //           (x: servico) => x.ativo == true
+  //         );
+  //       else if (dadosFiltro.statusServico == "inativo")
+  //         this.servicosShare = this.servicos.filter(
+  //           (x: servico) => x.ativo == false
+  //         );
+
+  //       if (dadosFiltro.erro == "sim")
+  //         this.servicosShare = this.servicos.filter(
+  //           (x: servico) => x.quantidadeErros != "0"
+  //         );
+  //       else if (dadosFiltro.erro == "nao")
+  //         this.servicosShare = this.servicos.filter(
+  //           (x: servico) => x.quantidadeErros == "0"
+  //         );
+
+  //       Loading.hide();
+  //     },
+  //     (erro) => Loading.hide()
+  //   );
+
+  //   // console.log( this.servicosShare);
+  //   // this.servicosShare = this.servicos;
+  // }
 
   abreFiltroOnClick() {
     this.abreFiltro = !this.abreFiltro;
