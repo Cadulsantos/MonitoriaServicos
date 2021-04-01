@@ -21,6 +21,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { LogErroServicoComponent } from './log-erro-servico/log-erro-servico.component';
 import { LogExecucaoServicoComponent } from './log-execucao-servico/log-execucao-servico.component';
 import { ConfiguracaoServicoComponent } from './configuracao-servico/configuracao-servico.component';
+import { DashboardMonitoriaServicoModule } from './dashboard/dashboard-monitoria-servico/dashboard-monitoria-servico.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ConfiguracaoServicoComponent } from './configuracao-servico/configuraca
     ConfiguracaoServicoComponent
     // LoginComponent
     // HomeComponent
-  ],
+      // DashboardMonitoriaServicoComponent
+   ],
   imports: [
     // COLOCAR EM OUTRO MODULO SHARED
     BrowserModule,
@@ -47,7 +49,8 @@ import { ConfiguracaoServicoComponent } from './configuracao-servico/configuraca
     HttpClientModule,
     HomeModule,
     LoginModule,
-    ServicosModule
+    ServicosModule,
+    DashboardMonitoriaServicoModule
   ],
   providers: [
     AuthService//,

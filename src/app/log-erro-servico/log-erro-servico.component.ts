@@ -38,7 +38,12 @@ export class LogErroServicoComponent implements OnInit {
     this.logErroService
       .getLogsErroServico(idServico, origem)
       .subscribe(logs => {
-        this.logsErro = logs;
+
+        if(logs.length == 0)
+          this.bsModalRef.hide()
+        else
+          this.logsErro = logs;
+
       });
     Loading.hide();
   }
@@ -77,11 +82,11 @@ export class LogErroServicoComponent implements OnInit {
     this.logErroServico = logErroServico;
   }
 
-  resolverTodosErros(){
+  solucionarTodosErros(){
     Loading.show();
 
     this.logErroService.solucionarErroServico(this.logErroServico.servicoId).subscribe((x) => console.log(x));
-    this.bsModalRef.hide();
+    this.modalRef.hide();
     Loading.hide();
 
   }

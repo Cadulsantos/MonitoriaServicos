@@ -18,6 +18,11 @@ const routes: Routes = [
     path : 'servicos',
     loadChildren : () => import('./servicos/servicos.module').then(m => m.ServicosModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path : 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard-monitoria-servico/dashboard-monitoria-servico.module').then(m => m.DashboardMonitoriaServicoModule),
+    canActivate: [AuthGuard]
   }
 ];
 

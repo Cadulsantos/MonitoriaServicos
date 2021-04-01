@@ -10,7 +10,7 @@
 
   <div class="d-flex justify-content-end">
 
-    <button type="button" style="margin: 1%; width: 200px;" (click)="resolverTodosErros()" class="btn btn-secondary" >
+    <button type="button" style="margin: 1%; width: 200px;" (click)="openConfirmResolv(confirmResolvAll, logsErro[0])" class="btn btn-secondary" >
       Resolver todos
     </button>
   </div>
@@ -49,7 +49,7 @@
 
   <ng-template #confirmResolv >
     <div class="modal-header header">
-      <h4 class="modal-title pull-left"> Deseja mesmo marcar esse erro como resolvido?</h4>
+      <h4 class="modal-title pull-left"> Deseja solucionar este erro?</h4>
       <button
         type="button"
         class="close pull-right"
@@ -63,6 +63,30 @@
       <tr class="d-flex justify-content-around">
         <td>
           <button type="button" class="btn btn-success" (click)="resolverLog()" ><i>Sim</i></button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="modalRef.hide()"><i>Não</i></button>
+        </td>
+      </tr>
+    </div>
+  </ng-template>
+
+  <ng-template #confirmResolvAll >
+    <div class="modal-header header">
+      <h4 class="modal-title pull-left"> Deseja solucionar todos os erros?</h4>
+      <button
+        type="button"
+        class="close pull-right"
+        aria-label="Close"
+        (click)="modalRef.hide()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="width: 100%;">
+      <tr class="d-flex justify-content-around">
+        <td>
+          <button type="button" class="btn btn-success" (click)="solucionarTodosErros()" ><i>Sim</i></button>
         </td>
         <td>
           <button type="button" class="btn btn-danger" (click)="modalRef.hide()"><i>Não</i></button>
