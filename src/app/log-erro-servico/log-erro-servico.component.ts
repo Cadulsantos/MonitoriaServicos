@@ -65,7 +65,7 @@ export class LogErroServicoComponent implements OnInit {
           this.getLogErroServico(this.servico.id, this.servico.origem);
         } else this.reload = false;
       });
-    Loading.hide();
+     Loading.hide();
     this.modalRef.hide();
   }
 
@@ -85,7 +85,14 @@ export class LogErroServicoComponent implements OnInit {
   solucionarTodosErros(){
     Loading.show();
 
-    this.logErroService.solucionarErroServico(this.logErroServico.servicoId).subscribe((x) => console.log(x));
+    this.logErroService.solucionarErroServico(this.logErroServico.servicoId)
+    .subscribe((has: Boolean) =>{
+      if (has) {
+        this.reload = true;
+        // this.bsModalRef.hide();
+        this.getLogErroServico(this.servico.id, this.servico.origem);
+      } else this.reload = false;
+    });
     this.modalRef.hide();
     Loading.hide();
 

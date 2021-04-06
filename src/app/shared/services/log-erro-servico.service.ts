@@ -10,7 +10,7 @@ import { take } from 'rxjs/operators';
 })
 export class LogErroServicoService {
   private _CONTROLLER = "LogErro";
-logErrosServico : logErroServico;
+  logErrosServico : logErroServico;
 
   constructor(public http: HttpClient, private api: ApiProvider) { }
 

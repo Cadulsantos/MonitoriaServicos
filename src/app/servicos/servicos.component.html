@@ -1,127 +1,134 @@
-<div class="d-flex" style="height: 100%">
-  <div class="py-2" style="width: 100%; height: 100%">
-    <div class="container shadow" >
-      <form [formGroup]="filtroServico" class="form" (ngSubmit)="filtra()" >
-        <div  class="form-group row">
-          <div class="col-md-4 mb-4">
-            <label>Nome do Serviço</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="nomeArgument"
-              placeholder="Ex: AtualizaAndamentosBigData"
-            />
+<div class="d-flex flex-column" style="height: 100%; margin-top: 3%;" >
+  <!-- <div class="py-2" style="width: 100%; height: 100%">
+
+  </div> -->
+  <div class="container-fluid" >
+    <div class="card shadow-sm mb-3">
+      <div class="card-body">
+        <form [formGroup]="filtroServico" class="form" (ngSubmit)="filtra()" >
+          <div  class="form-group row">
+            <div class="col-md-4 mb-4">
+              <label>Nome do Serviço</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="nomeArgument"
+                placeholder="Ex: AtualizaAndamentosBigData"
+              />
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label> Status do Serviço </label>
+              <select
+                id="statusServico"
+                class="form-control"
+                formControlName="statusServico"
+              >
+                <option value="" selected>Ambos</option>
+                <option value="ativo" selected>Ativo</option>
+                <option value="inativo">Inativo</option>
+              </select>
+            </div>
+
+            <div class="col-md-4 mb-4">
+              <label> Erros </label>
+              <select id="statusErro" class="form-control" formControlName="erro">
+                <option value="" selected>Ambos</option>
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+              </select>
+            </div>
           </div>
 
-          <div class="col-md-4 mb-4">
-            <label> Status do Serviço </label>
-            <select
-              id="statusServico"
-              class="form-control"
-              formControlName="statusServico"
-            >
-              <option value="" selected>Ambos</option>
-              <option value="ativo" selected>Ativo</option>
-              <option value="inativo">Inativo</option>
-            </select>
+          <!-- <div class="row" ></div> -->
+          <div class="d-flex justify-content-end">
+            <button type="submit" style="margin: 1%; width: 200px;" class="btn btn-info"> Buscar </button>
+
+            <button type="button" style="margin: 1%; width: 200px;" (click)="servicosRodando()" class="btn btn-secondary" >
+              Serviços Rodando
+            </button>
           </div>
-
-          <div class="col-md-4 mb-4">
-            <label> Erros </label>
-            <select id="statusErro" class="form-control" formControlName="erro">
-              <option value="" selected>Ambos</option>
-              <option value="sim">Sim</option>
-              <option value="nao">Não</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- <div class="row" ></div> -->
-        <div class="d-flex justify-content-end">
-          <button type="submit" style="margin: 1%; width: 200px;" class="btn btn-info"> Buscar </button>
-
-          <button type="button" style="margin: 1%; width: 200px;" (click)="servicosRodando()" class="btn btn-secondary" >
-            Serviços Rodando
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
 
-    <div class="container shadow" style="margin-top: 3%">
-      <table class="table">
-        <div class="table-responsive">
-          <table class="table align-middle">
-            <thead>
-              <tr>
-                <th scope="col">Nome</th>
-                <!-- <th scope="col">Periodicidade</th>
-              <th scope="col">Descrição</th> -->
-                <th scope="col">Status</th>
-                <th scope="col" style="width: 15%" class="text-center">
-                  <a>Dt. Ultima Execução</a>
-                </th>
-                <th scope="col" style="width: 15%" class="text-center">
-                  <a>Execuções</a>
-                </th>
-                <th scope="col" style="width: 13%" class="text-center">
-                  <a>Erros</a>
-                </th>
-                <th scope="col" class="text-center"><a>Configurações</a></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of servicosShare">
-                <td>{{ item.nomeArgument }}</td>
-                <td>
-                  <span
-                    class="badge badge-success badge-primary"
-                    *ngIf="item.ativo == true"
-                    >Ativo</span
-                  >
-                  <span class="badge badge-danger" *ngIf="item.ativo == false"
-                    >Inativo</span
-                  >
-                </td>
-                <td class="text-center">{{ item.dataInicio }}</td>
-                <td class="text-center">
-                  <button
-                    type="button"
-                    class="btn btn-info"
-                    (click)="logsExecucaoServicoOnClick(item)"
-                  >
-                    <i>Execuções</i>
-                  </button>
-                </td>
-                <td class="text-center">
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    (click)="logsErroServicoOnClick(item)"
-                  >
-                    <i
-                      >Visualizar
-                      <span class="badge badge-light" style="color: black">{{
-                        item.quantidadeErros
-                      }}</span></i
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <table class="table">
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <!-- <th scope="col">Periodicidade</th>
+                <th scope="col">Descrição</th> -->
+                  <th scope="col">Status</th>
+                  <th scope="col" style="width: 15%" class="text-center">
+                    <a>Dt. Ultima Execução</a>
+                  </th>
+                  <th scope="col" style="width: 15%" class="text-center">
+                    <a>Execuções</a>
+                  </th>
+                  <th scope="col" style="width: 13%" class="text-center">
+                    <a>Erros</a>
+                  </th>
+                  <th scope="col" class="text-center"><a>Configurações</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of servicosShare">
+                  <td>{{ item.nomeArgument }}</td>
+                  <td>
+                    <span
+                      class="badge badge-success badge-primary"
+                      *ngIf="item.ativo == true"
+                      >Ativo</span
                     >
-                  </button>
-                </td>
-                <td class="text-center">
-                  <button
-                    class="btn btn-outline-dark"
-                    (click)="configuracoesOnClick(item)"
-                  >
-                    <i class="fas fa-cog"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </table>
+                    <span class="badge badge-danger" *ngIf="item.ativo == false"
+                      >Inativo</span
+                    >
+                  </td>
+                  <td class="text-center">{{ item.dataInicio }}</td>
+                  <td class="text-center">
+                    <button
+                      type="button"
+                      class="btn btn-info"
+                      (click)="logsExecucaoServicoOnClick(item)"
+                    >
+                      <i>Execuções</i>
+                    </button>
+                  </td>
+                  <td class="text-center">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      (click)="logsErroServicoOnClick(item)"
+                    >
+                      <i
+                        >Visualizar
+                        <span class="badge badge-light" style="color: black">{{
+                          item.quantidadeErros
+                        }}</span></i
+                      >
+                    </button>
+                  </td>
+                  <td class="text-center">
+                    <button
+                      class="btn btn-outline-dark"
+                      (click)="configuracoesOnClick(item)"
+                    >
+                      <i class="fas fa-cog"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </table>
+      </div>
     </div>
-  </div>
 
+  </div>
   <!-- <div data-bs-toggle="tooltip" title="Disabled tooltip">
     <span
       class="d-inline-block"
