@@ -8,9 +8,9 @@
     </button>
   </div>
 
-  <div class="d-flex justify-content-end">
+  <div class="d-flex justify-content">
 
-    <button type="button" style="margin: 1%; width: 200px;" (click)="openConfirmResolv(confirmResolvAll, logsErro[0])" class="btn btn-secondary" >
+    <button type="button" style="margin: 1%; width: 150px;" (click)="openConfirmResolv(confirmResolvAll, logsErro[0])" class="btn btn btn-outline-secondary" >
       Resolver todos
     </button>
   </div>
@@ -62,7 +62,7 @@
     <div class="modal-body" style="width: 100%;">
       <tr class="d-flex justify-content-around">
         <td>
-          <button type="button" class="btn btn-success" (click)="resolverLog()" ><i>Sim</i></button>
+          <button type="button" class="btn btn-success" (click)="solucionarErro()" ><i>Sim</i></button>
         </td>
         <td>
           <button type="button" class="btn btn-danger" (click)="modalRef.hide()"><i>Não</i></button>

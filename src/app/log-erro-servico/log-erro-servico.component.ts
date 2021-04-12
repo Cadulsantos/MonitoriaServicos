@@ -54,7 +54,7 @@ export class LogErroServicoComponent implements OnInit {
   //   //  console.log(log);
   // }
 
-  resolverLog() {
+  solucionarErro() {
     Loading.show();
     this.logErroService
       .atualizaStatusLog(this.logErroServico)
@@ -65,7 +65,7 @@ export class LogErroServicoComponent implements OnInit {
           this.getLogErroServico(this.servico.id, this.servico.origem);
         } else this.reload = false;
       });
-     Loading.hide();
+    //  Loading.hide();
     this.modalRef.hide();
   }
 
