@@ -22,6 +22,8 @@ import { LogErroServicoComponent } from './log-erro-servico/log-erro-servico.com
 import { LogExecucaoServicoComponent } from './log-execucao-servico/log-execucao-servico.component';
 import { ConfiguracaoServicoComponent } from './configuracao-servico/configuracao-servico.component';
 import { DashboardMonitoriaServicoModule } from './dashboard/dashboard-monitoria-servico/dashboard-monitoria-servico.module';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { DashboardMonitoriaServicoModule } from './dashboard/dashboard-monitoria
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    PaginationModule.forRoot(),
+
     // COLOCAR EM OUTRO MODULO SHARED
 
     HttpClientModule,

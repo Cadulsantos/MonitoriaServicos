@@ -5,6 +5,7 @@ import { Loading } from '../shared/class/loading';
 import { logErroServico } from '../shared/Model/logErroServico';
 import { servico } from '../shared/Model/servico';
 import { LogErroServicoService } from '../shared/services/log-erro-servico.service';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-log-erro-servico',
@@ -18,6 +19,11 @@ export class LogErroServicoComponent implements OnInit {
   logErroServico: logErroServico;
   reload: boolean;
 
+  //paginação
+  pageSize : number;
+  page: number;
+  collectionSize : number;
+
   constructor(
     public bsModalRef: BsModalRef,
     private router: ActivatedRoute,
@@ -30,23 +36,55 @@ export class LogErroServicoComponent implements OnInit {
     // this.idServico =  this.router.snapshot.paramMap.get('idServico');
     // this.origem = this.router.snapshot.paramMap.get('origem');
 
-    this.getLogErroServico(this.servico.id, this.servico.origem);
+
+
+    this.pageSize = 10;
+    this.page = 1;
+
+    // this.collectionSize = this.logsErro.length;
+
+    this.getLogErroServico();
+
+    console.log( this.collectionSize);
+
   }
 
-  getLogErroServico(idServico: string, origem: string) {
+  pageChanged(event: PageChangedEvent): void {
     Loading.show();
-    this.logErroService
-      .getLogsErroServico(idServico, origem)
-      .subscribe(logs => {
-
-        if(logs.length == 0)
-          this.bsModalRef.hide()
-        else
-          this.logsErro = logs;
-
-      });
-    Loading.hide();
+    console.log("Pagina "+`${this.page}`)
+   this.getLogErroServico();
   }
+
+//novo
+getLogErroServico() {
+  Loading.show();
+  this.logErroService.getLogsErroServicoPag(this.servico.id, this.page)
+    .subscribe(logs => {
+      if(logs.length == 0)
+          this.bsModalRef.hide()
+        else{
+          console.log(logs.length);
+          this.logsErro = logs;
+        }
+
+    })
+  Loading.hide();
+}
+
+  // getLogErroServico(idServico: string, origem: string) {
+  //   Loading.show();
+  //   this.logErroService
+  //     .getLogsErroServico(idServico, origem)
+  //     .subscribe(logs => {
+
+  //       if(logs.length == 0)
+  //         this.bsModalRef.hide()
+  //       else
+  //         this.logsErro = logs;
+
+  //     });
+  //   Loading.hide();
+  // }
 
   // resolverLog(logErroServico : logErroServico)
   // {
@@ -62,7 +100,8 @@ export class LogErroServicoComponent implements OnInit {
         if (has) {
           this.reload = true;
           // this.bsModalRef.hide();
-          this.getLogErroServico(this.servico.id, this.servico.origem);
+          // this.getLogErroServico(this.servico.id, this.servico.origem);
+          this.getLogErroServico();
         } else this.reload = false;
       });
     //  Loading.hide();
@@ -93,7 +132,8 @@ export class LogErroServicoComponent implements OnInit {
          this.modalRef.hide();
       }
       else{
-        this.getLogErroServico(this.servico.id, this.servico.origem);
+        // this.getLogErroServico(this.servico.id, this.servico.origem);
+        this.getLogErroServico();
         this.reload = false;
       }
     });

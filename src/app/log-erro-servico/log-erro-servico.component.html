@@ -1,46 +1,3 @@
-<!-- <div> -->
-  <!-- <div class="modal-header d-flex justify-content-center border-0">
-
-    <h4 class="modal-title pull-left"> Logs de Erro : {{servico.nomeArgument}}</h4>
-
-    <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-
-  <div class="d-flex justify-content">
-
-    <button type="button" style="margin: 1%; width: 150px;" (click)="openConfirmResolv(confirmResolvAll, logsErro[0])" class="btn btn btn-outline-secondary" >
-      Resolver todos
-    </button>
-  </div>
-
-  <div class="modal-body d-flex flex-column">
-    <div style="margin: 50px 0px 0px 0px; width: 90%; font-size: medium;" class="mx-auto">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Messagem</th>
-            <th scope="col" style="width: 18%;" class="text-center">Data do Erro</th>
-            <th scope="col" class="text-center">Quantidade</th>
-            <th scope="col" class="text-center">Resolvido</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of logsErro">
-            <td>{{ item.message}}</td>
-            <td class="text-center">{{ item.dataErro}}</td>
-            <td class="text-center">{{ item.quantidade}}</td>
-            <td class="text-center">
-              <img style="width: 25px" *ngIf="item.resolvido == true" src="assets/img/green_check.png" />
-              <button type="button" (click)="openConfirmResolv(confirmResolv, item)" *ngIf="item.resolvido == false" class="btn btn-danger">RESOLVER </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div> -->
-
   <div class="container-fluid">
       <div class="modal-content border-0" >
         <div class="modal-header shadow-sm">
@@ -78,19 +35,16 @@
             </table>
           </div>
 
-          <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-              </li>
-            </ul>
-          </nav>
+          <!-- <div class="row">
+            <div class="col-xs-12 col-12">
+              <pagination-controls [totalItems]="collectionSize" [(ngModel)]="page"></pagination-controls>
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="pagination justify-content-center">
+              <pagination [totalItems]="collectionSize" (pageChange)="pageChanged(page = $event)"></pagination>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -143,5 +97,3 @@
       </tr>
     </div>
   </ng-template>
-
-<!-- </div> -->

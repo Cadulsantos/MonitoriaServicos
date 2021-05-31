@@ -21,6 +21,13 @@ export class LogErroServicoService {
 
   }
 
+  getLogsErroServicoPag( idServico: string, pagina : number )
+  {
+    return this.http.get<logErroServico[]>(
+      this.api.request(this._CONTROLLER, "GetLogErrosServicoPag",  `?idServico=${idServico}&pagina=${pagina}`))
+
+  }
+
   solucionarErroServico(idServico: string){
     return this.http.get(this.api.request(this._CONTROLLER, "GetSolucionarErrosServico", idServico));
   }
