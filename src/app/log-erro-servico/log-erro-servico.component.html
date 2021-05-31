@@ -1,5 +1,5 @@
-<div>
-  <div class="modal-header d-flex justify-content-center border-0">
+<!-- <div> -->
+  <!-- <div class="modal-header d-flex justify-content-center border-0">
 
     <h4 class="modal-title pull-left"> Logs de Erro : {{servico.nomeArgument}}</h4>
 
@@ -24,7 +24,6 @@
             <th scope="col" style="width: 18%;" class="text-center">Data do Erro</th>
             <th scope="col" class="text-center">Quantidade</th>
             <th scope="col" class="text-center">Resolvido</th>
-            <!-- <th scope="col"> </th> -->
           </tr>
         </thead>
         <tbody>
@@ -32,20 +31,70 @@
             <td>{{ item.message}}</td>
             <td class="text-center">{{ item.dataErro}}</td>
             <td class="text-center">{{ item.quantidade}}</td>
-            <!-- <td>{{ item.resolvido}}</td> -->
             <td class="text-center">
-              <!-- <button type="button" (click)="resolverLog(item)" *ngIf="item.resolvido == true" class="btn btn-success">RESOLVIDO</button> -->
               <img style="width: 25px" *ngIf="item.resolvido == true" src="assets/img/green_check.png" />
-              <!-- <button type="button" (click)="resolverLog(item)" *ngIf="item.resolvido == false" class="btn btn-danger">RESOLVER </button> -->
               <button type="button" (click)="openConfirmResolv(confirmResolv, item)" *ngIf="item.resolvido == false" class="btn btn-danger">RESOLVER </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
+  </div> -->
 
+  <div class="container-fluid">
+      <div class="modal-content border-0" >
+        <div class="modal-header shadow-sm">
+          <h4 class="modal-title pull-left"> {{servico.nomeArgument}}</h4>
+          <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <button type="button"  class="btn btn-outline-secondary  btn-sm"  style="margin-bottom: 20px;"
+          (click)="openConfirmResolv(confirmResolvAll, logsErro[0])" >
+            Resolver todos
+          </button>
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th scope="col">Messagem</th>
+                  <th scope="col" style="width: 18%;" class="text-center">Data do Erro</th>
+                  <th scope="col" class="text-center">Quantidade</th>
+                  <th scope="col" class="text-center">Resolvido</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of logsErro">
+                  <td>{{ item.message}}</td>
+                  <td class="text-center">{{ item.dataErro}}</td>
+                  <td class="text-center">{{ item.quantidade}}</td>
+                  <td class="text-center">
+                    <img style="width: 25px" *ngIf="item.resolvido == true" src="assets/img/green_check.png" />
+                    <button type="button" (click)="openConfirmResolv(confirmResolv, item)" *ngIf="item.resolvido == false" class="btn btn-danger btn-sm">Resolver </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+    </div>
 
   <ng-template #confirmResolv >
     <div class="modal-header header">
@@ -95,4 +144,4 @@
     </div>
   </ng-template>
 
-</div>
+<!-- </div> -->
