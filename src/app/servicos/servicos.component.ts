@@ -58,8 +58,7 @@ export class ServicosComponent implements OnInit {
 
   servicosRodando() {
     Loading.show();
-    this.servicosShare = this.servicos;
-
+    // this.servicosShare = this.servicos;
     this.servicosShare = this.servicosShare.filter(
       (x: servico) => x.dataFim == "" && x.ativo == true
     );

@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -35,42 +36,39 @@ export class LogErroServicoComponent implements OnInit {
   ngOnInit() {
     // this.idServico =  this.router.snapshot.paramMap.get('idServico');
     // this.origem = this.router.snapshot.paramMap.get('origem');
-
-
-
     this.pageSize = 10;
     this.page = 1;
-
-    // this.collectionSize = this.logsErro.length;
-
+    this.getTotalPag();
     this.getLogErroServico();
-
-    console.log( this.collectionSize);
-
   }
 
   pageChanged(event: PageChangedEvent): void {
-    Loading.show();
     console.log("Pagina "+`${this.page}`)
-   this.getLogErroServico();
+    this.getLogErroServico();
   }
 
-//novo
-getLogErroServico() {
-  Loading.show();
-  this.logErroService.getLogsErroServicoPag(this.servico.id, this.page)
-    .subscribe(logs => {
-      if(logs.length == 0)
-          this.bsModalRef.hide()
-        else{
-          console.log(logs.length);
-          this.logsErro = logs;
-        }
+  //novo
+  getLogErroServico() {
+    Loading.show();
+    this.logErroService.getLogsErroServicoPag(this.servico.id, this.page)
+      .subscribe(logs => {
+        if(logs.length == 0)
+            this.bsModalRef.hide()
+          else{
+            this.logsErro = logs;
+          }
+      });
+    Loading.hide();
+  }
 
-    })
-  Loading.hide();
+
+getTotalPag(){
+  this.logErroService.getCountErrosGroup(this.servico.id)
+  .subscribe(count => {
+    this.collectionSize = count;
+    console.log(this.collectionSize)
+  });
 }
-
   // getLogErroServico(idServico: string, origem: string) {
   //   Loading.show();
   //   this.logErroService

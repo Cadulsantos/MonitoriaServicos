@@ -28,6 +28,11 @@ export class LogErroServicoService {
 
   }
 
+  getCountErrosGroup(idServico: string ){
+      return this.http.get<number>(
+        this.api.request(this._CONTROLLER, "GetQtdErroGroup",  `?idServico=${idServico}`))
+  }
+
   solucionarErroServico(idServico: string){
     return this.http.get(this.api.request(this._CONTROLLER, "GetSolucionarErrosServico", idServico));
   }
