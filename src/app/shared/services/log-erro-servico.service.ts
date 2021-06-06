@@ -14,10 +14,10 @@ export class LogErroServicoService {
 
   constructor(public http: HttpClient, private api: ApiProvider) { }
 
-  getLogsErroServico( idServico: string, origem : string )
+  getQtdErroGroup( idServico: string)
   {
-    return this.http.get<logErroServico[]>(
-      this.api.request(this._CONTROLLER, "GetLogErrosServico",  `${idServico}/${origem}`))
+    return this.http.get<number>(
+      this.api.request(this._CONTROLLER, "GetQtdErroGroup",  `?idServico=${idServico}`))
 
   }
 

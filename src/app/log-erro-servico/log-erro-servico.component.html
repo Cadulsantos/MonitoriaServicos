@@ -42,7 +42,7 @@
           </div> -->
           <div class="row">
             <div class="pagination justify-content-center">
-              <pagination [totalItems]="collectionSize" (pageChange)="pageChanged(page = $event)"></pagination>
+              <pagination [hidden]=showPag [maxSize]=7 [totalItems]="collectionSize" (pageChanged)="pageChanged($event)"></pagination>
             </div>
           </div>
 
