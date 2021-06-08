@@ -7,14 +7,14 @@ import { logExecucaoServico } from '../model/logExecucaoServico';
   providedIn: 'root'
 })
 export class LogExecucaoServicoService {
-  private _CONTROLLER = "Servico";
+  private _CONTROLLER = "LogExecucao";
   logsExecucao : logExecucaoServico[];
 
     constructor(public http: HttpClient, private api: ApiProvider) { }
 
-    getLogsExecucao(idServico : string)
+    getLogsExecucao(idServico : string, pagina: number)
     {
       return this.http.get<logExecucaoServico[]>(
-        this.api.request(this._CONTROLLER, "GetLogsExecucaoServico", idServico))
+        this.api.request(this._CONTROLLER, "GetLogsExecucaoServico", `?idServico=${idServico}&pagina=${pagina}`))
     }
 }

@@ -24,6 +24,7 @@ export class LogErroServicoComponent implements OnInit {
   pageSize : number;
   page: number;
   collectionSize : number;
+  showPag = false;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -36,53 +37,41 @@ export class LogErroServicoComponent implements OnInit {
   ngOnInit() {
     // this.idServico =  this.router.snapshot.paramMap.get('idServico');
     // this.origem = this.router.snapshot.paramMap.get('origem');
+
     this.pageSize = 10;
     this.page = 1;
-    this.getTotalPag();
+
     this.getLogErroServico();
   }
 
   pageChanged(event: PageChangedEvent): void {
+    this.page = event.page;
     console.log("Pagina "+`${this.page}`)
     this.getLogErroServico();
   }
 
-  //novo
+//novo
   getLogErroServico() {
     Loading.show();
-    this.logErroService.getLogsErroServicoPag(this.servico.id, this.page)
-      .subscribe(logs => {
-        if(logs.length == 0)
-            this.bsModalRef.hide()
-          else{
-            this.logsErro = logs;
-          }
-      });
-    Loading.hide();
-  }
 
+    this.logErroService.getQtdErroGroup(this.servico.id)
+    .subscribe(value => {
+      this.collectionSize = value;
+      if(this.collectionSize < this.pageSize){
+        this.showPag = true
+      }
 
-getTotalPag(){
-  this.logErroService.getCountErrosGroup(this.servico.id)
-  .subscribe(count => {
-    this.collectionSize = count;
-    console.log(this.collectionSize)
+      if(this.collectionSize > 0){
+        this.logErroService.getLogsErroServicoPag(this.servico.id, this.page)
+        .subscribe(logs => {
+          this.logsErro = logs;
+        });
+      }
   });
+
+
+  Loading.hide();
 }
-  // getLogErroServico(idServico: string, origem: string) {
-  //   Loading.show();
-  //   this.logErroService
-  //     .getLogsErroServico(idServico, origem)
-  //     .subscribe(logs => {
-
-  //       if(logs.length == 0)
-  //         this.bsModalRef.hide()
-  //       else
-  //         this.logsErro = logs;
-
-  //     });
-  //   Loading.hide();
-  // }
 
   // resolverLog(logErroServico : logErroServico)
   // {

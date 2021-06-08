@@ -34,18 +34,9 @@
               </tbody>
             </table>
           </div>
-
-          <!-- <div class="row">
-            <div class="col-xs-12 col-12">
-              <pagination-controls [totalItems]="collectionSize" [(ngModel)]="page"></pagination-controls>
-            </div>
-          </div> -->
-          <div class="row">
-            <div class="pagination justify-content-center">
-              <pagination [totalItems]="collectionSize" (pageChange)="pageChanged(page = $event)"></pagination>
-            </div>
+          <div class="pagination justify-content-center">
+            <pagination [hidden]=showPag [maxSize]=7 [totalItems]="collectionSize" (pageChanged)="pageChanged($event)"></pagination>
           </div>
-
         </div>
       </div>
     </div>

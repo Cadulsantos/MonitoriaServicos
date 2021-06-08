@@ -4,6 +4,7 @@ import { logExecucaoServico } from '../shared/model/logExecucaoServico';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { servico } from '../shared/model/servico';
 import { Loading } from '../shared/class/loading';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-log-execucao-servico',
@@ -13,23 +14,40 @@ import { Loading } from '../shared/class/loading';
 export class LogExecucaoServicoComponent implements OnInit {
   modalRef: BsModalRef;
   servico : servico;
-
   logsExecucao : logExecucaoServico[] = [];
+
+    //paginação
+    pageSize : number;
+    page: number;
+    collectionSize : number;
+    showPag = false;
+
   constructor(
     public bsModalRef: BsModalRef,
     private logExecucaoService : LogExecucaoServicoService) { }
 
   ngOnInit() {
     // this.idServico =  this.router.snapshot.paramMap.get('idServico');
-    this.getLogExecucaoServico(this.servico.id);
+    this.pageSize = 10;
+    this.page = 1;
+    this.getLogExecucaoServico();
   }
 
 
- getLogExecucaoServico(idServico : string)
+  getLogExecucaoServico()
  {
   Loading.show();
-   this.logExecucaoService.getLogsExecucao(idServico).subscribe(logsExecucao => {this.logsExecucao = logsExecucao});
-   Loading.hide();
+   this.logExecucaoService.getLogsExecucao(this.servico.id, this.page)
+   .subscribe(logsExecucao => {
+     this.logsExecucao = logsExecucao
+    });
+  Loading.hide();
  }
+
+ pageChanged(event: PageChangedEvent): void {
+  this.page = event.page;
+  console.log("Pagina "+`${this.page}`)
+  this.getLogExecucaoServico();
+}
 
 }
