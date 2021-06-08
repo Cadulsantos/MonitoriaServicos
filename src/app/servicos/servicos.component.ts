@@ -201,7 +201,7 @@ export class ServicosComponent implements OnInit {
 
   configuracoesOnClick(servico: servico) {
     this.modalService.onHidden.pipe(take(1)).subscribe((res: any) => {
-      this.getServicos();
+      this.filtra();
     });
 
     this.modalRef = this.modalService.show(ConfiguracaoServicoComponent, {

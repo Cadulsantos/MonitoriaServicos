@@ -27,15 +27,19 @@
                   <td class="text-center">{{ item.dataErro}}</td>
                   <td class="text-center">{{ item.quantidade}}</td>
                   <td class="text-center">
-                    <img style="width: 25px" *ngIf="item.resolvido == true" src="assets/img/green_check.png" />
-                    <button type="button" (click)="openConfirmResolv(confirmResolv, item)" *ngIf="item.resolvido == false" class="btn btn-danger btn-sm">Resolver </button>
+                    <!-- <img style="width: 25px" *ngIf="item.resolvido == true" src="assets/img/green_check.png" />
+                    <button type="button" (click)="openConfirmResolv(confirmResolv, item)" *ngIf="item.resolvido == false" class="btn btn-danger btn-sm">Resolver </button> -->
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" value="item.resolvido" type="checkbox" id="flexSwitchCheckDefault">
+                      <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                    </div>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="pagination justify-content-center">
-            <pagination [hidden]=showPag [maxSize]=7 [totalItems]="collectionSize" (pageChanged)="pageChanged($event)"></pagination>
+            <pagination [hidden]=showPag [maxSize]=5 [totalItems]="collectionSize" (pageChanged)="pageChanged($event)"></pagination>
           </div>
         </div>
       </div>

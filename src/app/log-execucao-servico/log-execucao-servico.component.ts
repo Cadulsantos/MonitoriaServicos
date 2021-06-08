@@ -30,6 +30,11 @@ export class LogExecucaoServicoComponent implements OnInit {
     // this.idServico =  this.router.snapshot.paramMap.get('idServico');
     this.pageSize = 10;
     this.page = 1;
+
+    this.logExecucaoService.getQtdLogExec(this.servico.id)
+    .subscribe(value =>{
+      this.collectionSize = value
+    });
     this.getLogExecucaoServico();
   }
 

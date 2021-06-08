@@ -1,5 +1,7 @@
 <div class="modal-header d-flex justify-content-center border-0">
-  <h4 class="modal-title pull-left"> Editar Serviço: {{servico.nomeArgument}}</h4>
+  <h4 class="modal-title pull-left"> Editar Serviço</h4>
+
+  <!-- : {{servico.nomeArgument}} -->
 
   <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
     <span aria-hidden="true">&times;</span>
@@ -35,7 +37,7 @@
       <textarea class="form-control"  id="descricao"  formControlName="descricao" rows="2"></textarea>
     </div>
 
-    <button  class="btn btn-primary">Salvar</button>
+    <button  class="btn-sm btn-primary">Salvar</button>
 
   </form>
 </div>

@@ -98,7 +98,9 @@
                     </button>
                   </td>
                   <td class="text-center">
+                    <span style="color: #28a745; font-size: 25px;"  *ngIf="item.erro === false" class="material-icons">check_circle</span>
                     <button
+                      *ngIf="item.erro === true"
                       type="button"
                       class="btn btn-danger btn-sm"
                       (click)="logsErroServicoOnClick(item)"

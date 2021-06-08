@@ -15,6 +15,12 @@ export class LogExecucaoServicoService {
     getLogsExecucao(idServico : string, pagina: number)
     {
       return this.http.get<logExecucaoServico[]>(
-        this.api.request(this._CONTROLLER, "GetLogsExecucaoServico", `?idServico=${idServico}&pagina=${pagina}`))
+        this.api.request(this._CONTROLLER, "GetLogsExecucaoServico", `?idServico=${idServico}&pagina=${pagina}`));
+    }
+
+    getQtdLogExec(idServico : string)
+    {
+      return this.http.get<number>(
+        this.api.request(this._CONTROLLER, "GetQtdLogsExec", `?idServico=${idServico}`));
     }
 }

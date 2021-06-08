@@ -86,8 +86,7 @@ export class LogErroServicoComponent implements OnInit {
       .subscribe((has: Boolean) => {
         if (has) {
           this.reload = true;
-          // this.bsModalRef.hide();
-          // this.getLogErroServico(this.servico.id, this.servico.origem);
+          this.bsModalRef.hide();
           this.getLogErroServico();
         } else this.reload = false;
       });
@@ -124,7 +123,5 @@ export class LogErroServicoComponent implements OnInit {
         this.reload = false;
       }
     });
-    // Loading.hide();
-
   }
 }
