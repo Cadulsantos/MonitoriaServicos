@@ -1,5 +1,4 @@
-<div>
-  <div class="modal-header d-flex justify-content-center border-0">
+  <!-- <div class="modal-header d-flex justify-content-center border-0">
 
     <h4 class="modal-title pull-left"> Logs de Execução : {{servico.nomeArgument}}</h4>
 
@@ -29,6 +28,38 @@
         </tbody>
       </table>
     </div>
-  </div>
+  </div> -->
 
-</div>
+
+  <div class="container-fluid">
+    <div class="modal-content border-0" >
+      <div class="modal-header shadow-sm">
+        <h4 class="modal-title pull-left"> Logs de Execução : {{servico.nomeArgument}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead >
+              <tr>
+                <th scope="col" class="text-center">Nome</th>
+                <th scope="col" class="text-center">Data Inicio</th>
+                <th scope="col" class="text-center">Data Fim</th>
+                <th scope="col" class="text-center">Tempo de Execução</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of logsExecucao">
+                <td class="text-center">{{ item.nomeServico}}</td>
+                <td class="text-center">{{ item.dataInicio }}</td>
+                <td class="text-center">{{ item.dataFim }}</td>
+                <td class="text-center">{{ item.tempoExecucao }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination justify-content-center">
+          <pagination [hidden]=showPag [maxSize]=7 [totalItems]="collectionSize" (pageChanged)="pageChanged($event)"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>

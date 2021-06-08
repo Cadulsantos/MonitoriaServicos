@@ -50,22 +50,22 @@ export class LogErroServicoComponent implements OnInit {
   }
 
 //novo
-getLogErroServico() {
-  Loading.show();
+  getLogErroServico() {
+    Loading.show();
 
-  this.logErroService.getQtdErroGroup(this.servico.id)
-  .subscribe(value => {
-    this.collectionSize = value;
-    if(this.collectionSize < this.pageSize){
-      this.showPag = true
-    }
+    this.logErroService.getQtdErroGroup(this.servico.id)
+    .subscribe(value => {
+      this.collectionSize = value;
+      if(this.collectionSize < this.pageSize){
+        this.showPag = true
+      }
 
-    if(this.collectionSize > 0){
-      this.logErroService.getLogsErroServicoPag(this.servico.id, this.page)
-      .subscribe(logs => {
-        this.logsErro = logs;
-      });
-    }
+      if(this.collectionSize > 0){
+        this.logErroService.getLogsErroServicoPag(this.servico.id, this.page)
+        .subscribe(logs => {
+          this.logsErro = logs;
+        });
+      }
   });
 
 
