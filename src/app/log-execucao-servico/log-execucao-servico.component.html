@@ -61,7 +61,7 @@
           </table>
         </div>
         <div class="pagination justify-content-center">
-          <pagination [hidden]=showPag [maxSize]=5 [totalItems]="collectionSize" (pageChanged)="pageChanged($event)"></pagination>
+          <pagination  previousText="Anterior" nextText="Proximo" [hidden]=showPag [maxSize]=5 [totalItems]="collectionSize" (pageChanged)="pageChanged($event)"></pagination>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import { logErroServico } from '../shared/Model/logErroServico';
 import { servico } from '../shared/Model/servico';
 import { LogErroServicoService } from '../shared/services/log-erro-servico.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-log-erro-servico',
@@ -28,7 +29,7 @@ export class LogErroServicoComponent implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    private router: ActivatedRoute,
+    // private router: ActivatedRoute,
     private modalService: BsModalService,
 
     private logErroService: LogErroServicoService
@@ -68,8 +69,6 @@ export class LogErroServicoComponent implements OnInit {
         });
       }
   });
-
-
   Loading.hide();
 }
 
@@ -78,6 +77,27 @@ export class LogErroServicoComponent implements OnInit {
   // var log = this.logErroService.atualizaStatusLog(logErroServico);
   //   //  console.log(log);
   // }
+
+  openConfirmResolv(
+    template: TemplateRef<any>,
+    logErroServico: logErroServico
+  ) {
+    // this.modalService.onHidden.pipe(take(1)).subscribe((res : any) =>{
+    // this.reload = this.modalRef.content.reload;
+    // this.bsModalRef.hide();
+    // });
+
+    this.modalService.onHidden.pipe(take(1)).subscribe((res: any) => {
+
+      console.log("apertou não");
+      this.getLogErroServico();
+      // this.logErroServico.resolvido = false;
+    });
+
+    console.log("openConfirmResolv");
+    this.modalRef = this.modalService.show(template);
+    this.logErroServico = logErroServico;
+  }
 
   solucionarErro() {
     Loading.show();
@@ -94,18 +114,7 @@ export class LogErroServicoComponent implements OnInit {
     this.modalRef.hide();
   }
 
-  openConfirmResolv(
-    template: TemplateRef<any>,
-    logErroServico: logErroServico
-  ) {
-    // this.modalService.onHidden.pipe(take(1)).subscribe((res : any) =>{
-    // this.reload = this.modalRef.content.reload;
-    // this.bsModalRef.hide();
-    // });
 
-    this.modalRef = this.modalService.show(template);
-    this.logErroServico = logErroServico;
-  }
 
   solucionarTodosErros(){
     Loading.show();
