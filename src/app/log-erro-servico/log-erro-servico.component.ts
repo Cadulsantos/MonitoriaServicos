@@ -58,7 +58,11 @@ export class LogErroServicoComponent implements OnInit {
     this.logErroService.getQtdErroGroup(this.servico.id)
     .subscribe(value => {
       this.collectionSize = value;
-      if(this.collectionSize < this.pageSize){
+
+      if( this.collectionSize === 0){
+        this.bsModalRef.hide();
+      }
+      else if(this.collectionSize < this.pageSize){
         this.showPag = true
       }
 
