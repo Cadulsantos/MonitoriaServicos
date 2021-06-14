@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { Subscription } from "rxjs";
-import { take } from 'rxjs/operators';
+import { delay, take } from 'rxjs/operators';
 import { ConfiguracaoServicoComponent } from '../configuracao-servico/configuracao-servico.component';
 import { LogErroServicoComponent } from '../log-erro-servico/log-erro-servico.component';
 import { LogExecucaoServicoComponent } from '../log-execucao-servico/log-execucao-servico.component';
@@ -109,6 +109,7 @@ export class ServicosComponent implements OnInit {
 
       // this.servicos = servicos;
         this.servicosShare = servicos;
+        delay(1500);
 
         Loading.hide();
       },

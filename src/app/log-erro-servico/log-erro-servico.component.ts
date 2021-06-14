@@ -104,7 +104,7 @@ export class LogErroServicoComponent implements OnInit {
   }
 
   solucionarErro() {
-    Loading.show();
+    // Loading.show();
     this.logErroService
       .atualizaStatusLog(this.logErroServico)
       .subscribe((has: Boolean) => {
