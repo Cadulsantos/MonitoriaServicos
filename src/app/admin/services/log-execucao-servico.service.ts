@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiProvider } from '../providers/api';
 import { HttpClient } from '@angular/common/http';
-import { logExecucaoServico } from '../model/logExecucaoServico';
+import { logExecucaoServico } from '../../shared/model/logExecucaoServico';
 
 @Injectable({
   providedIn: 'root'

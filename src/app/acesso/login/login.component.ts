@@ -3,9 +3,9 @@ import Swal from 'sweetalert2';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from './../shared/services/auth.service';
-import { UsuarioService } from '../shared/services/usuario.service';
-import { usuario } from './../shared/Model/usuario';
+import { AuthService } from '../../admin/services/auth.service';
+import { UsuarioService } from '../../admin/services/usuario.service';
+import { usuario } from '../../shared/Model/usuario';
 
 @Component({
   selector: 'app-login',

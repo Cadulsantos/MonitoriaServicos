@@ -3,14 +3,14 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { Subscription } from "rxjs";
 import { delay, take } from 'rxjs/operators';
-import { ConfiguracaoServicoComponent } from '../configuracao-servico/configuracao-servico.component';
-import { LogErroServicoComponent } from '../log-erro-servico/log-erro-servico.component';
-import { LogExecucaoServicoComponent } from '../log-execucao-servico/log-execucao-servico.component';
+import { ConfiguracaoServicoComponent } from '../../components/configuracao-servico/configuracao-servico.component';
+import { LogErroServicoComponent } from '../../components/log-erro-servico/log-erro-servico.component';
+import { LogExecucaoServicoComponent } from '../../components/log-execucao-servico/log-execucao-servico.component';
 
-import { Loading } from "../shared/class/loading";
-import { servico } from "../shared/Model/servico";
-import { UtilProvider } from "../shared/providers/util";
-import { ServicosService } from "../shared/services/servicos.service";
+import { Loading } from "../../../shared/class/loading";
+import { servico } from "../../../shared/Model/servico";
+import { UtilProvider } from "../../providers/util";
+import { ServicosService } from "../../services/servicos.service";
 
 @Component({
   selector: "app-servicos",

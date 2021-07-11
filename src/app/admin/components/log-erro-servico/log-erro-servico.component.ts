@@ -2,10 +2,10 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Loading } from '../shared/class/loading';
-import { logErroServico } from '../shared/Model/logErroServico';
-import { servico } from '../shared/Model/servico';
-import { LogErroServicoService } from '../shared/services/log-erro-servico.service';
+import { Loading } from '../../../shared/class/loading';
+import { logErroServico } from '../../../shared/Model/logErroServico';
+import { servico } from '../../../shared/Model/servico';
+import { LogErroServicoService } from '../../services/log-erro-servico.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { take } from 'rxjs/operators';
 

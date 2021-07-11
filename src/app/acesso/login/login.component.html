@@ -1,4 +1,4 @@
-<body>
+<!-- <body>
   <div id="login">
       <div class="container">
           <div id="login-row" class="row justify-content-center align-items-center">
@@ -24,5 +24,23 @@
           </div>
       </div>
   </div>
-</body>
+</body> -->
 
+<body >
+  <div class="text-center " style="margin-top: 10%;">
+    <form  style="max-width: 400px; margin:auto;" [formGroup]="loginForms" (ngSubmit)="onAutenticacaoLogin()">
+      <h1 class=" h3 mb-4 font-weight-normal">Monitoria PROADV</h1>
+
+      <input type="text"  formControlName = "login" placeholder="Usuário"  class="form-control" required autofocus>
+      <label for="login" class="sr-only">Usuário</label>
+
+      <label for="password" class="sr-only">Senha</label><br>
+      <input type="password" formControlName = "senha"  placeholder="Senha" class="form-control">
+
+      <div class="mt-3">
+        <button class="btn btn-outline-primary btn-lg btn-block" >Login</button>
+      </div>
+    </form>
+  </div>
+
+  </body>

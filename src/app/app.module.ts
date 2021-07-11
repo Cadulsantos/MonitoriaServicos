@@ -1,7 +1,7 @@
-import { LoginModule } from './login/login.module';
-import { ServicosModule } from './servicos/servicos.module';
-import { HomeModule } from './home/home.module';
-import { AuthService } from './shared/services/auth.service';
+import { LoginModule } from './acesso/login/login.module';
+import { ServicosModule } from './admin/pages/servicos/servicos.module';
+import { HomeModule } from './admin/pages/home/home.module';
+import { AuthService } from './admin/services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 
@@ -12,16 +12,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { CustomMaterialModule } from './core/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
-import { ServicosGuard } from './guards/servicos.guard';
+import { LoginComponent } from './acesso/login/login.component';
+import { ServicosGuard } from './admin/guards/servicos.guard';
 import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { LogErroServicoComponent } from './log-erro-servico/log-erro-servico.component';
-import { LogExecucaoServicoComponent } from './log-execucao-servico/log-execucao-servico.component';
-import { ConfiguracaoServicoComponent } from './configuracao-servico/configuracao-servico.component';
-import { DashboardMonitoriaServicoModule } from './dashboard/dashboard-monitoria-servico/dashboard-monitoria-servico.module';
+import { LogErroServicoComponent } from './admin/components/log-erro-servico/log-erro-servico.component';
+import { LogExecucaoServicoComponent } from './admin/components/log-execucao-servico/log-execucao-servico.component';
+import { ConfiguracaoServicoComponent } from './admin/components/configuracao-servico/configuracao-servico.component';
+import { DashboardMonitoriaServicoModule } from './admin/pages/dashboard-monitoria-servico/dashboard-monitoria-servico.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 

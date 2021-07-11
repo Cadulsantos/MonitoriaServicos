@@ -3,8 +3,8 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { catchError, map } from "rxjs/operators";
 import { from, Observable, throwError } from 'rxjs';
 
-import { ApiProvider } from './../providers/api';
-import { usuario } from './../Model/usuario';
+import { ApiProvider } from '../providers/api';
+import { usuario } from '../../shared/Model/usuario';
 
 @Injectable({
   providedIn: 'root'

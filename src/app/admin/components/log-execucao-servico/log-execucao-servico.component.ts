@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LogExecucaoServicoService } from '../shared/services/log-execucao-servico.service';
-import { logExecucaoServico } from '../shared/model/logExecucaoServico';
+import { LogExecucaoServicoService } from '../../services/log-execucao-servico.service';
+import { logExecucaoServico } from '../../../shared/model/logExecucaoServico';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { servico } from '../shared/model/servico';
-import { Loading } from '../shared/class/loading';
+import { servico } from '../../../shared/model/servico';
+import { Loading } from '../../../shared/class/loading';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { servico } from '../shared/Model/servico';
-import { ServicosService } from '../shared/services/servicos.service';
+import { servico } from '../../../shared/Model/servico';
+import { ServicosService } from '../../services/servicos.service';
 
 @Component({
   selector: 'app-configuracao-servico',

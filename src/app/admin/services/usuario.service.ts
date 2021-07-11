@@ -1,7 +1,7 @@
-import { usuario } from './../Model/usuario';
+import { usuario } from '../../shared/Model/usuario';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpBackend } from '@angular/common/http';
-import { ApiProvider } from './../providers/api';
+import { ApiProvider } from '../providers/api';
 
 @Injectable({
   providedIn: 'root'

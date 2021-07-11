@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiProvider } from '../providers/api';
 
-import { servico } from '../Model/servico';
+import { servico } from '../../shared/Model/servico';
 import { take } from 'rxjs/operators';
 
 @Injectable({

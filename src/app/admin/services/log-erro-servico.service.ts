@@ -1,5 +1,5 @@
-import { logErroServico } from './../model/logErroServico';
-import { ApiProvider } from './../providers/api';
+import { logErroServico } from '../../shared/model/logErroServico';
+import { ApiProvider } from '../providers/api';
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
