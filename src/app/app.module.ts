@@ -23,6 +23,7 @@ import { LogExecucaoServicoComponent } from './admin/components/log-execucao-ser
 import { ConfiguracaoServicoComponent } from './admin/components/configuracao-servico/configuracao-servico.component';
 import { DashboardMonitoriaServicoModule } from './admin/pages/dashboard-monitoria-servico/dashboard-monitoria-servico.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { CustomMaterialModule } from './core/material.module';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     FormsModule,
     ReactiveFormsModule,
     PaginationModule.forRoot(),
-
+    CustomMaterialModule,
     // COLOCAR EM OUTRO MODULO SHARED
 
     HttpClientModule,
