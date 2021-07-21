@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ServicosComponent } from './servicos.component';
 
 const routes: Routes = [
-  {path: '', pathMatch : 'full', component: ServicosComponent},
+  // {path: '', pathMatch : 'full', component: ServicosComponent},
 ];
 
 @NgModule({
