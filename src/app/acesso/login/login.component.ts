@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
        console.log(usua);
       // this.usuario = usua;
       localStorage.setItem('Token', JSON.stringify({ login : usua.login, data : new Date()}));
-      this.authService.mostrarMenuEmitter.emit(true);
+      // this.authService.mostrarMenuEmitter.emit(true);
       this.route.navigate(['/admin']);
      },(error) => {
         Swal.fire(error.error);

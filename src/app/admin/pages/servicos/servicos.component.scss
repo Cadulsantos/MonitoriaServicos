@@ -1,19 +1,47 @@
-.filterSize20 {
-  width: 30%;
+// .filterSize20 {
+//   width: 30%;
+//   height: 100%;
+// }
+
+// .filterSize0 {
+//   width: 3%;
+//   height: 100%;
+// }
+
+// .btn-circle {
+//   width: 30px;
+//   height: 30px;
+//   text-align: center;
+//   padding: 6px 0;
+//   font-size: 12px;
+//   line-height: 1.428571429;
+//   border-radius: 15px;
+// }
+
+.menu {
+  text-align: left;
+
+  position: fixed;
+
+  background-color: white;
+  -moz-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1),
+    0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1),
+    0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+mat-sidenav-container {
   height: 100%;
 }
 
-.filterSize0 {
-  width: 3%;
-  height: 100%;
+
+mat-sidenav{
+  width: 280px;
 }
 
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
+
+.tags{
+  margin-top: 16px;
 }

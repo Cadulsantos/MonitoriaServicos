@@ -34,13 +34,13 @@ export class ServicosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getServicos();
+    // this.getServicos();
     this.criarFiltroServicos();
-    const sub = this.util.emiterEvent.subscribe((has) => {
-      if (has) this.getServicos();
-    });
+    // const sub = this.util.emiterEvent.subscribe((has) => {
+    //   if (has) this.getServicos();
+    // });
 
-    this.subs.push(sub);
+    // this.subs.push(sub);
   }
 
   getServicos() {

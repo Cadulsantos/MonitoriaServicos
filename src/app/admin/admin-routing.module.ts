@@ -7,13 +7,12 @@ import { ServicosComponent } from './pages/servicos/servicos.component';
 
 const routes: Routes = [
   {path: '',
-   pathMatch : 'full',
-    component: AdminComponent
-    // children: [
-    //   { path: '', redirectTo: 'servicos', pathMatch: 'full' },
-    //   {path: 'servicos', component: ServicosComponent}
+    component: AdminComponent,
+    children: [
+      { path: '', redirectTo: 'servicos', pathMatch: 'full' },
+      {path: 'servicos', component: ServicosComponent}
 
-    // ]
+    ]
   }
   // {
   //   path: 'home',

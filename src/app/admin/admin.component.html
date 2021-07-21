@@ -21,12 +21,13 @@
   </div>
 </nav> -->
 
-
+<!--
 <mat-sidenav-container  class="mat-sidenav-container">
-    <mat-sidenav mode="side" opened> Sidenav content  </mat-sidenav>
+    <mat-sidenav #sidenav mode="side" > Sidenav </mat-sidenav>
     <mat-sidenav-content>
+      <button (click)="sidenav.toggle()" >Toggle Opened</button>
       MAIN
     </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->
 
-<!-- <router-outlet></router-outlet> -->
+<router-outlet></router-outlet>
