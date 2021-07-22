@@ -1,24 +1,55 @@
 
 
 <mat-sidenav-container  class="mat-sidenav-container">
-  <mat-sidenav  mode="side" opened class="menu" >
-    <h5 class="fw-bold px-2">Serviços Disponíveis </h5>
-  <!-- <div>
-    <input type="text"  class="form-control form-control-sm" placeholder="Nome da tag" />
-   </div> -->
-   <div class="form-row px-1 tags">
+  <mat-sidenav fixedInViewport="true"  mode="side" opened class="menu" >
+   <div class="form-row px-1 tags mx-2 mt-4">
+    <h5 class="fw-bold px-2">Serviços Disponíveis</h5>
     <div  class="form-group col-11">
       <input type="text"  class="form-control form-control-sm" placeholder="Nome da tag" />
     </div>
-
-    <div  class="form-group col-12">
-
+    <div *ngFor="let tag of tagList"  class="d-grid  col-11 ">
+      <button type="button" class="btn btn-outline-secondary btn-sm mb-3 text-left rounded-pill ">{{tag}}</button>
     </div>
+
    </div>
   </mat-sidenav>
   <mat-sidenav-content>
-
-    <div class="d-flex flex-column" style="height: 100%; margin-top: 3%;" >
+    <div class="container-fluid">
+      <div class="card shadow-sm mt-2 mb-3">
+        <form [formGroup]="filtroServico" class="form row gx-3 p-5" (ngSubmit)="filtra()" >
+          <div class="col-sm-3" >
+            <label>Nome do Serviço</label>
+            <input type="text" class="form-control form-control-sm" formControlName="nomeArgument" placeholder="Ex: AtualizaAndamentosBigData" />
+          </div>
+          <div class="col-sm-2">
+            <label> Status </label>
+            <select class="form-select form-select-sm" formControlName="statusServico">
+              <option value="" selected>Ambos</option>
+              <option value="ativo" selected>Ativo</option>
+              <option value="inativo">Inativo</option>
+            </select>
+          </div>
+          <div class="col-sm-2">
+            <label> Erros </label>
+            <select id="statusErro" class="form-select form-select-sm" formControlName="erro">
+              <option value="" selected>Ambos</option>
+              <option value="sim">Sim</option>
+              <option value="nao">Não</option>
+            </select>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-check form-switch" style="padding-top: 33px;">
+              <input class="form-check-input" type="checkbox" >
+              <label class="form-check-label" >Serviços Rodando</label>
+            </div>
+          </div>
+          <div class="col-sm-3 mx-auto">
+            <button type="submit" class="btn btn-sm btn-primary"> Buscar </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- <div class="d-flex flex-column" style="height: 100%; margin-top: 3%;" >
       <div class="container-fluid" >
         <div class="card shadow-sm mb-3">
           <div class="card-body">
@@ -57,7 +88,7 @@
                 </div>
               </div>
 
-              <!-- <div class="row" ></div> -->
+
               <div class="d-flex justify-content-end">
                 <button type="submit" style="margin: 1%; width: 200px;" class="btn btn-info"> Buscar </button>
 
@@ -76,8 +107,6 @@
                   <thead>
                     <tr>
                       <th scope="col">Nome</th>
-                      <!-- <th scope="col">Periodicidade</th>
-                    <th scope="col">Descrição</th> -->
                       <th scope="col">Status</th>
                       <th scope="col" style="width: 15%" class="text-center">
                         <a>Dt. Ultima Execução</a>
@@ -145,7 +174,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </mat-sidenav-content>
 </mat-sidenav-container>

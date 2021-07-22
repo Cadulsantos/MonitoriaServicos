@@ -26,6 +26,24 @@ export class ServicosComponent implements OnInit {
   filtroServico: FormGroup;
   subs = new Array<Subscription>();
 
+  tagList  =  [
+    "Faturamento",
+    "Andamentos",
+    "Envio de e-mail",
+    "Projeto Recovery",
+    "Fluxo de Publicacao",
+
+    // "Faturamento",
+    // "Andamentos",
+    // "Envio de e-mail",
+    // "Projeto Recovery",
+
+    // "Faturamento",
+    // "Andamentos",
+    // "Envio de e-mail",
+    // "Projeto Recovery",
+  ];
+
   constructor(
     private util: UtilProvider,
     private fb: FormBuilder,

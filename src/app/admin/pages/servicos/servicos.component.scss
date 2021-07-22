@@ -1,27 +1,18 @@
-// .filterSize20 {
-//   width: 30%;
-//   height: 100%;
-// }
+mat-sidenav-container {
+  height: 100%;
+  overflow: none!important;
+}
 
-// .filterSize0 {
-//   width: 3%;
-//   height: 100%;
-// }
 
-// .btn-circle {
-//   width: 30px;
-//   height: 30px;
-//   text-align: center;
-//   padding: 6px 0;
-//   font-size: 12px;
-//   line-height: 1.428571429;
-//   border-radius: 15px;
-// }
+mat-sidenav{
+  width: 280px;
+
+}
 
 .menu {
-  text-align: left;
 
-  position: fixed;
+  text-align: left;
+  position: fixed!important;
 
   background-color: white;
   -moz-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1),
@@ -32,16 +23,12 @@
     0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-mat-sidenav-container {
-  height: 100%;
-}
-
-
-mat-sidenav{
-  width: 280px;
-}
-
-
 .tags{
-  margin-top: 16px;
+  margin-top: 16px 16px 16px 0px;
 }
+
+// .btn-tag{
+//   margin: 10px;
+//   text-align: left;
+// }
+
