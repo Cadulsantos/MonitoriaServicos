@@ -16,6 +16,7 @@
     <div class="container-fluid">
       <div class="card shadow-sm mt-2 mb-3">
         <div class="card-body">
+          <p class="fw-bold fs-4">Busca rápida de serviços</p>
           <form [formGroup]="filtroServico" class="form-row g-3" (ngSubmit)="filtra()" >
             <div class="col-auto col-4" >
               <label>Nome do Serviço</label>
@@ -39,13 +40,13 @@
             </div>
             <div class="col-auto">
               <div class="form-check form-switch" style="padding-top: 33px;">
-                <input class="form-check-input" type="checkbox" >
-                <label class="form-check-label" >Serviços Rodando</label>
+                <input class="form-check-input" type="checkbox" (click)="servicosRodando()">
+                <label class="form-check-label">Serviços Rodando</label>
               </div>
             </div>
             <div class="col-auto col-2" style="padding-top: 30px;">
               <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-sm btn-primary"> Buscar </button>
+                <button type="submit" class="btn btn-sm btn-primary" > Buscar </button>
               </div>
             </div>
           </form>
@@ -56,34 +57,41 @@
             <div class="card mb-3 shadow-sm">
               <div class="card-body">
                 <div class="card-title row">
-                  <h6 class=" fw-bold col-sm-10 text-truncate" >{{ servico.nomeArgument }} </h6>
+                  <h6 class=" fw-bold col-sm-10 text-truncate" tooltip="{{servico.nomeArgument}}" placement="top" [adaptivePosition]="true" [delay]="500">
+                    {{ servico.nomeArgument }}
+                  </h6>
                   <div class="col-auto px-1">
                     <span class="badge badge-success rounded-pill" *ngIf="servico.ativo == true">Ativo</span>
                     <span class="badge badge-danger rounded-pill" *ngIf="servico.ativo == false">Inativo</span>
                   </div>
                 </div>
-                <p class="form-label fw-bold mb-2">Descrição</p>
-                <p  class="form-label fw-lighter lh-sm text-truncate">
-                  <small> {{ servico.descricao }} </small>
+
+                <div class="row px-2">
+                  <span class="col col-sm-auto badge badge-secondary mr-1 mb-1"  *ngFor="let tag of servico.tags" >
+                    {{ tag }}
+                  </span>
+                </div>
+
+                <small class="form-label fw-bold"> Descrição</small>
+                <p  class="form-label fw-lighter lh-sm text-truncate"
+                 tooltip="{{servico.descricao}}" placement="top" [adaptivePosition]="false" [delay]="500">
+                  <small >
+                     {{ servico.descricao }}
+                  </small>
                 </p>
-                <p class="form-label fw-bold">Periodicidade</p>
+                <small class="form-label fw-bold">Periodicidade</small>
                 <p  class="form-label fw-lighter lh-sm text-truncate">
-                  {{servico.periodicidade}}
+                  <small>{{servico.periodicidade}}</small>
                 </p>
-                <!-- <button type="button" class="btn btn-sm btn-secondary rounded-lg mr-1">Execuções</button>
-                <button type="button" class="btn btn-sm btn-secondary rounded-lg mr-1">Erros</button>
-                <button type="button" class="btn btn-sm btn-secondary rounded-lg mr-1">Editar</button>
-                <button type="button" class="btn btn-sm btn-secondary rounded-lg mr-1">Ações</button> -->
                 <div class=" mt-2">
-                  <button type="button" class="btn btn-sm btn-outline-info rounded-lg mr-1" (click)="logsExecucaoServicoOnClick(servico)" >Logs</button>
-                  <button type="button" class="btn btn-sm btn-outline-danger rounded-lg mr-1" (click)="logsErroServicoOnClick(servico)">
+                  <button type="button" class="btn btn-sm btn-outline-primary rounded-lg mr-1" (click)="logsExecucaoServicoOnClick(servico)" >Logs</button>
+                  <button type="button"  class="btn btn-sm btn-outline-danger rounded-lg mr-1" [ngClass]="{'disabled': servico.erro === false}"  (click)="logsErroServicoOnClick(servico)">
                     Erros
                     <i>
                       <span class="badge badge-danger" style="color: white"> {{ servico.quantidadeErros }} </span>
                     </i>
                   </button>
                   <button type="button" class="btn btn-sm btn-outline-secondary rounded-lg mr-1" (click)="configuracoesOnClick(servico)">Editar</button>
-                  <button type="button" class="btn btn-sm btn-outline-primary rounded-lg mr-1">Ações</button>
                 </div>
               </div>
             </div>
