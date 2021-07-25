@@ -28,4 +28,5 @@ export interface servico {
   origem : string;
   quantidadeErros: string;
   erro: boolean;
+  tags: Array<string>;
   }

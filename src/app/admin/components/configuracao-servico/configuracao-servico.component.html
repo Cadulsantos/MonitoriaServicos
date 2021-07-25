@@ -13,28 +13,34 @@
     <div class="form-group" >
       <label for="nomeServico"> Nome do Serviço: </label>
       <input
-       type="text" class="form-control"  style="margin-left: 5px;"
+       type="text" class="form-control form-control-sm"
           id="nomeServico" formControlName="nomeServico">
     </div>
 
     <div class="form-group" >
-      <label for="statusServico"> Status: </label>
-    <select id="statusServico" formControlName="statusServico" class="form-control">
-        <option value="true" > Ativo </option >
-          <option value="false" > Inativo </option >
+      <label for="statusServico"> Tags: </label>
+      <select id="statusServico" formControlName="statusServico" class="form-control form-select form-select-sm">
+          <option value="true" > Ativo </option >
+            <option value="false" > Inativo </option >
       </select>
     </div>
 
     <div class="form-group" >
+      <label for="tags"> Status: </label>
+      <select id="tags" formControlName="tags"  class="form-control form-select form-select-sm" *ngFor="let tag of servico.tags" >
+        <option value="tag" > {{tag}} </option >
+      </select>
+    </div>
+    <div class="form-group" >
       <label for="periodicidade"> Periodicidade: </label>
       <input
-       type="text" class="form-control" style="margin-left: 5px;"
+       type="text" class="form-control form-control-sm"
         id="periodicidade"  formControlName="periodicidade">
     </div>
 
     <div class="form-group" >
       <label for="descricao"> Descrição: </label>
-      <textarea class="form-control"  id="descricao"  formControlName="descricao" rows="2"></textarea>
+      <textarea class="form-control form-control-sm"  id="descricao"  formControlName="descricao" rows="2"></textarea>
     </div>
 
     <button  class="btn-sm btn-primary">Salvar</button>

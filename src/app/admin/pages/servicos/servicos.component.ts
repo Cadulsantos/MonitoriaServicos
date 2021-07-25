@@ -1,3 +1,5 @@
+import { SharedModule } from './../../../shared/shared.module';
+import { debounceTime, distinctUntilChanged, map, tap, timeInterval, timestamp } from 'rxjs/operators';
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
@@ -11,6 +13,7 @@ import { Loading } from "../../../shared/class/loading";
 import { servico } from "../../../shared/Model/servico";
 import { UtilProvider } from "../../providers/util";
 import { ServicosService } from "../../services/servicos.service";
+import { timer } from 'rxjs';
 
 @Component({
   selector: "app-servicos",
@@ -23,32 +26,14 @@ export class ServicosComponent implements OnInit {
   servicos: servico[] = [];
   servicosShare: servico[] = [];
 
+  filtroTag: FormGroup;
   filtroServico: FormGroup;
+
   subs = new Array<Subscription>();
 
-  // tagList2  =  [
-  //   "Faturamento",
-  //   "Envio de e-mail",
-  //   "Envio de e-mail"
-  // ];
-
-  tagList  =  [
-    "Faturamento",
-    "Andamentos",
-    "Envio de e-mail",
-    "Projeto Recovery",
-    "Fluxo de Publicacao",
-
-    // "Faturamento",
-    // "Andamentos",
-    // "Envio de e-mail",
-    // "Projeto Recovery",
-
-    // "Faturamento",
-    // "Andamentos",
-    // "Envio de e-mail",
-    // "Projeto Recovery",
-  ];
+  tagListShared = [];
+  tagList = [];
+  tagsFiltro = [];
 
   constructor(
     private util: UtilProvider,
@@ -58,20 +43,65 @@ export class ServicosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getServicos();
+    this.getTags();
+    // this.getServicos();
+    this.criarFiltroTags();
     this.criarFiltroServicos();
+    this.carregarTagList();
+
     // const sub = this.util.emiterEvent.subscribe((has) => {
     //   if (has) this.getServicos();
     // });
 
     // this.subs.push(sub);
+
+
+    this.filtroTag.get('nomeTag').valueChanges
+    .pipe(
+      debounceTime(400),
+      distinctUntilChanged(),
+      // tap(tag => console.log(tag)),
+      map(tag => tag != "" ? this.tagListShared = this.tagList.filter(f => f.toLocaleLowerCase().includes(tag.toLocaleLowerCase())) : this.carregarTagList()),
+
+    )
+    .subscribe();
+
+  }
+
+
+  filtraTag(tag: string){
+
+    var tagExist = this.tagsFiltro.filter((x) => x === tag).length > 0;
+
+    if(tagExist)
+    {
+      var index = this.tagsFiltro.indexOf(tag);
+      if(index !== -1 )
+        this.tagsFiltro.splice(index, 1)
+    }
+    else
+      this.tagsFiltro.push(tag);
+
+    // if(this.tagsFiltro.length > 0)
+      this.filtra()
+
+
+  }
+
+  getTags(){
+    this.servicoService.getTags().subscribe(
+      obj => {
+        this.tagList = obj["tags"],
+        this.carregarTagList()
+      },
+      (error) => console.log(error)
+    );
   }
 
   getServicos() {
     Loading.show();
     this.servicoService.getServicos().subscribe(
       (servicos) => {
-        // console.log(servicos);
         this.servicos = servicos;
         this.servicosShare = servicos.filter((x) => x.ativo == true);
         Loading.hide();
@@ -105,14 +135,23 @@ export class ServicosComponent implements OnInit {
     // this.subs.push(sub);
   }
 
+  criarFiltroTags() {
+    this.filtroTag = this.fb.group({
+      nomeTag: [""],
+
+    });
+  }
+
+  carregarTagList(){
+    this.tagListShared = this.tagList;
+  }
+
   filtra() {
     Loading.show();
     const dadosFiltro = this.filtroServico.value;
     let filtroServico: any = {};
 
     // this.servicosShare = servicos.filter(x => x.ativo == true);
-
-    console.log(dadosFiltro);
 
     filtroServico.nomeArgument = dadosFiltro.nomeArgument
 
@@ -126,6 +165,8 @@ export class ServicosComponent implements OnInit {
     else if (dadosFiltro.erro == "nao")
       filtroServico.erro = false;
 
+    if(this.tagsFiltro.length > 0)
+      filtroServico.tags = this.tagsFiltro;
     // console.log(filtroServico);
 
     this.servicoService.getServicosFiltro(filtroServico).subscribe(

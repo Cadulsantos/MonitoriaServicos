@@ -18,6 +18,11 @@ export class ServicosService {
       this.api.request(this._CONTROLLER, "GetServicos"));
   }
 
+  getTags(){
+    return this.http.get(
+      this.api.request(this._CONTROLLER, "GetTagsServico"));
+  }
+
   getServicosFiltro(servico : any){
     return this.http.post<servico[]>(this.api.request(this._CONTROLLER, "GetServicosFiltro"), servico);
   }

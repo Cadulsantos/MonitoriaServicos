@@ -32,7 +32,8 @@ export class ConfiguracaoServicoComponent implements OnInit {
       nomeServico: this.servico.nomeArgument,
       statusServico: this.servico.ativo,
       periodicidade: this.servico.periodicidade,
-      descricao: this.servico.descricao
+      descricao: this.servico.descricao,
+      tags: this.servico.tags
     });
   }
 

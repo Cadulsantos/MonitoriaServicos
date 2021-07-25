@@ -4,11 +4,11 @@
   <mat-sidenav fixedInViewport="true"  mode="side" opened class="menu" >
    <div class="form-row px-1 tags mx-2 mt-4">
     <h5 class="fw-bold px-2">Serviços Disponíveis</h5>
-    <div  class="form-group col-11">
-      <input type="text"  class="form-control form-control-sm" placeholder="Nome da tag" />
-    </div>
-    <div *ngFor="let tag of tagList"  class="d-grid col-11 ">
-      <button type="button" class="btn btn-outline-secondary btn-sm mb-2 text-left rounded-pill">{{tag}}</button>
+    <form  [formGroup]="filtroTag" class="form-group col-11">
+      <input type="text"  class="form-control form-control-sm" formControlName="nomeTag" placeholder="Nome da tag" />
+    </form>
+    <div *ngFor="let tag of tagListShared"  class="d-grid col-11 ">
+      <button type="button" data-bs-toggle="button"  class="btn btn-outline-secondary btn-sm mb-2 text-left rounded-pill" (click)="filtraTag(tag)"  >{{tag}}</button>
     </div>
    </div>
   </mat-sidenav>
