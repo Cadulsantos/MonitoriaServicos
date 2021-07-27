@@ -31,6 +31,7 @@
                     <button type="button" (click)="openConfirmResolv(confirmResolv, item)" *ngIf="item.resolvido == false" class="btn btn-danger btn-sm">Resolver </button> -->
                     <div class="form-check form-switch">
                       <input class="form-check-input" style="color: #28a745;" value="item.resolvido" type="checkbox" id="checkSoucionaErro" (click)="openConfirmResolv(confirmResolv, item)">
+                      <!-- <input class="form-check-input" style="color: #28a745;" value="item.resolvido" type="checkbox" id="checkSoucionaErro" (click)="openConfirm(item)"> -->
                       <label class="form-check-label" for="checkSoucionaErro"></label>
                     </div>
                   </td>

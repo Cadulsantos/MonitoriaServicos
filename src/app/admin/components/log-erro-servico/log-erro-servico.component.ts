@@ -1,4 +1,4 @@
-import { Subscription } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -7,7 +7,8 @@ import { logErroServico } from '../../../shared/Model/logErroServico';
 import { servico } from '../../../shared/Model/servico';
 import { LogErroServicoService } from '../../services/log-erro-servico.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
-import { take } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
+import { AlertModalService } from 'src/app/shared/service/alert-modal.service';
 
 @Component({
   selector: 'app-log-erro-servico',
@@ -31,7 +32,7 @@ export class LogErroServicoComponent implements OnInit {
     public bsModalRef: BsModalRef,
     // private router: ActivatedRoute,
     private modalService: BsModalService,
-
+    private alertService : AlertModalService,
     private logErroService: LogErroServicoService
   ) {}
 
@@ -101,6 +102,26 @@ export class LogErroServicoComponent implements OnInit {
     console.log("openConfirmResolv");
     this.modalRef = this.modalService.show(template);
     this.logErroServico = logErroServico;
+  }
+
+
+  openConfirm(logErroServico: logErroServico){
+    const result$ = this.alertService.showConfirm('Confirmação', 'Deseja remover este erro?', 'Sim' , 'Não');
+    // result$.asObservable()
+    // .pipe(
+    //   take(1),
+    //   switchMap((result : boolean) => {
+    //     console.log(result)
+    //   }) //result ? this.solucionarErro() : EMPTY
+    // )
+    // .subscribe(
+    //   // success => {
+    //   //   this.onRefresh()
+    //   // },
+    //   // error => {
+    //   //   this.alertService.showAlertDanger('Erro ao Remover curso. Tente novamente mais tarde.')
+    //   // }
+    // );
   }
 
   solucionarErro() {
