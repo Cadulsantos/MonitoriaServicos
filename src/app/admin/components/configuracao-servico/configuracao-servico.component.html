@@ -9,6 +9,8 @@
 </div>
 
 <div class="modal-body d-flex flex-column">
+
+
   <form [formGroup]="formServico" (ngSubmit)="openConfirmAlter(confirmAlter)" >
     <div class="form-group" >
       <label for="nomeServico"> Nome do Serviço: </label>
@@ -18,7 +20,7 @@
     </div>
 
     <div class="form-group" >
-      <label for="statusServico"> Tags: </label>
+      <label for="statusServico"> Status: </label>
       <select id="statusServico" formControlName="statusServico" class="form-control form-select form-select-sm">
           <option value="true" > Ativo </option >
             <option value="false" > Inativo </option >
@@ -26,10 +28,38 @@
     </div>
 
     <div class="form-group" >
-      <label for="tags"> Status: </label>
-      <select id="tags" formControlName="tags"  class="form-control form-select form-select-sm" *ngFor="let tag of servico.tags" >
+      <label for="tags"> Tags: </label>
+      <!-- <select id="tags" formControlName="tags"  class="form-control form-select form-select-sm" *ngFor="let tag of servico.tags" >
         <option value="tag" > {{tag}} </option >
-      </select>
+      </select> -->
+      <mat-form-field class="mat-form-field example-chip-list border rounded" appearance="none">
+    <!-- <mat-label>Favorite Fruits</mat-label> -->
+    <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip
+        *ngFor="let fruit of fruits"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(fruit)">
+        {{fruit}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="New fruit..."
+        #fruitInput
+        [formControl]="fruitCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+        {{fruit}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
     </div>
     <div class="form-group" >
       <label for="periodicidade"> Periodicidade: </label>

@@ -19,6 +19,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 @NgModule({
   imports: [
@@ -39,7 +40,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
      MatChipsModule,
      MatTooltipModule,
      MatTableModule,
-     MatPaginatorModule
+     MatPaginatorModule,
+     MatAutocompleteModule
+
   ],
   exports: [
      MatButtonModule,
@@ -57,7 +60,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
      MatChipsModule,
      MatTooltipModule,
      MatTableModule,
-     MatPaginatorModule
+     MatPaginatorModule,
+     MatAutocompleteModule
   ],
   providers: [
      MatDatepickerModule,

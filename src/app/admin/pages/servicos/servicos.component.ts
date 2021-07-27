@@ -60,13 +60,13 @@ export class ServicosComponent implements OnInit {
     .pipe(
       debounceTime(400),
       distinctUntilChanged(),
-      // tap(tag => console.log(tag)),
       map(tag => tag != "" ? this.tagListShared = this.tagList.filter(f => f.toLocaleLowerCase().includes(tag.toLocaleLowerCase())) : this.carregarTagList()),
 
     )
     .subscribe();
 
   }
+
 
 
   filtraTag(tag: string){
