@@ -138,7 +138,6 @@ export class ServicosComponent implements OnInit {
   criarFiltroTags() {
     this.filtroTag = this.fb.group({
       nomeTag: [""],
-
     });
   }
 
@@ -276,7 +275,8 @@ export class ServicosComponent implements OnInit {
       ignoreBackdropClick: true,
       class: "modal-dialog-centered .modal-alteraSevico",
       initialState: {
-        servico: servico
+        servico: servico,
+        todasAsTags: this.tagList
       }
     });
 

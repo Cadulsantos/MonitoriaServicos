@@ -1,25 +1,25 @@
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 import {NgModule} from "@angular/core";
 import { CommonModule } from '@angular/common';
-
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule} from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatListModule } from '@angular/material/list';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatChipsModule, MatChipInputEvent } from "@angular/material/chips";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   imports: [
@@ -41,27 +41,29 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
      MatTooltipModule,
      MatTableModule,
      MatPaginatorModule,
-     MatAutocompleteModule
-
+     MatAutocompleteModule,
+    //  MatChipInputEvent
   ],
   exports: [
-     MatButtonModule,
-     MatToolbarModule,
-     MatIconModule,
-     MatSidenavModule,
-     MatBadgeModule,
-     MatListModule,
-     MatGridListModule,
-     MatInputModule,
-     MatFormFieldModule,
-     MatSelectModule,
-     MatRadioModule,
-     MatDatepickerModule,
-     MatChipsModule,
-     MatTooltipModule,
-     MatTableModule,
-     MatPaginatorModule,
-     MatAutocompleteModule
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatBadgeModule,
+    MatListModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatAutocompleteModule,
+    // MatChipInputEvent
   ],
   providers: [
      MatDatepickerModule,

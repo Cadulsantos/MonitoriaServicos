@@ -3,7 +3,7 @@
 <mat-sidenav-container  class="mat-sidenav-container">
   <mat-sidenav fixedInViewport="true"  mode="side" opened class="menu" >
    <div class="form-row px-1 tags mx-2 mt-4">
-    <h5 class="fw-bold px-2">Serviços Disponíveis</h5>
+    <h2 class="fw-bold px-2">Serviços Disponíveis</h2>
     <form  [formGroup]="filtroTag" class="form-group col-11">
       <input type="text"  class="form-control form-control-sm" formControlName="nomeTag" placeholder="Nome da tag" />
     </form>
@@ -16,7 +16,7 @@
     <div class="container-fluid">
       <div class="card shadow-sm mt-2 mb-3">
         <div class="card-body">
-          <p class="fw-bold fs-4">Busca rápida de serviços</p>
+          <h2 class="fw-bold ">Busca rápida de serviços</h2>
           <form [formGroup]="filtroServico" class="form-row g-3" (ngSubmit)="filtra()" >
             <div class="col-auto col-4" >
               <label>Nome do Serviço</label>
@@ -57,17 +57,17 @@
             <div class="card mb-3 shadow-sm">
               <div class="card-body">
                 <div class="card-title row">
-                  <h6 class=" fw-bold col-sm-10 text-truncate" tooltip="{{servico.nomeArgument}}" placement="top" [adaptivePosition]="true" [delay]="500">
+                  <h3 class="mb-0 fw-bold col-sm-10 text-truncate" tooltip="{{servico.nomeArgument}}" placement="top" [adaptivePosition]="true" [delay]="500">
                     {{ servico.nomeArgument }}
-                  </h6>
+                  </h3>
                   <div class="col-auto px-1">
                     <span class="badge badge-success rounded-pill" *ngIf="servico.ativo == true">Ativo</span>
                     <span class="badge badge-danger rounded-pill" *ngIf="servico.ativo == false">Inativo</span>
                   </div>
                 </div>
 
-                <div class="row px-2">
-                  <span class="col col-sm-auto badge badge-secondary mr-1 mb-1"  *ngFor="let tag of servico.tags" >
+                <div class="d-flex flex-row flex-wrap">
+                  <span class="badge badge-secondary mr-1 mb-1"  *ngFor="let tag of servico.tags" >
                     {{ tag }}
                   </span>
                 </div>
@@ -87,9 +87,9 @@
                   <button type="button" class="btn btn-sm btn-outline-primary rounded-lg mr-1" (click)="logsExecucaoServicoOnClick(servico)" >Logs</button>
                   <button type="button"  class="btn btn-sm btn-outline-danger rounded-lg mr-1" [ngClass]="{'disabled': servico.erro === false}"  (click)="logsErroServicoOnClick(servico)">
                     Erros
-                    <i>
-                      <span class="badge badge-danger" style="color: white"> {{ servico.quantidadeErros }} </span>
-                    </i>
+                    <span class="badge badge-danger" style="color: white">
+                      {{ servico.quantidadeErros }}
+                    </span>
                   </button>
                   <button type="button" class="btn btn-sm btn-outline-secondary rounded-lg mr-1" (click)="configuracoesOnClick(servico)">Editar</button>
                 </div>

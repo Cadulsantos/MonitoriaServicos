@@ -44,3 +44,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 // .btn-outline-info  {
 //   color: #fff !important;
 // }
+
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 99999 !important;
+}
+
+.badge {
+  font-family: Arial,Helvetica,sans-serif!important;
+  font-size: 11px!important;
+}

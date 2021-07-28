@@ -1,7 +1,5 @@
 <div class="modal-header d-flex justify-content-center border-0">
-  <h4 class="modal-title pull-left"> Editar Serviço</h4>
-
-  <!-- : {{servico.nomeArgument}} -->
+  <h2 class="modal-title pull-left fw-bold"> Editar Serviço</h2>
 
   <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
     <span aria-hidden="true">&times;</span>
@@ -9,7 +7,6 @@
 </div>
 
 <div class="modal-body d-flex flex-column">
-
 
   <form [formGroup]="formServico" (ngSubmit)="openConfirmAlter(confirmAlter)" >
     <div class="form-group" >
@@ -26,39 +23,35 @@
             <option value="false" > Inativo </option >
       </select>
     </div>
-
     <div class="form-group" >
       <label for="tags"> Tags: </label>
-      <!-- <select id="tags" formControlName="tags"  class="form-control form-select form-select-sm" *ngFor="let tag of servico.tags" >
-        <option value="tag" > {{tag}} </option >
-      </select> -->
-      <mat-form-field class="mat-form-field example-chip-list border rounded" appearance="none">
-    <!-- <mat-label>Favorite Fruits</mat-label> -->
-    <mat-chip-list #chipList aria-label="Fruit selection">
-      <mat-chip
-        *ngFor="let fruit of fruits"
-        [selectable]="selectable"
-        [removable]="removable"
-        (removed)="remove(fruit)">
-        {{fruit}}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-      </mat-chip>
-      <input
-        placeholder="New fruit..."
-        #fruitInput
-        [formControl]="fruitCtrl"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="add($event)">
-    </mat-chip-list>
+      <mat-form-field class="example-chip-list border w-100 py-0 px-2 mb-2 rounded" appearance="none">
+        <!-- <mat-label>Favorite Fruits</mat-label> -->
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip
+            *ngFor="let tag of tagsServico"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(tag)">
+            {{tag}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="Nova Tag..."
+            #tagInput
+            [formControl]="fruitCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
 
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-        {{fruit}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let tag of tagsDisponiveis" [value]="tag">
+            {{tag}}
+          </mat-option>
+        </mat-autocomplete>
+       </mat-form-field>
 
     </div>
     <div class="form-group" >
@@ -73,7 +66,7 @@
       <textarea class="form-control form-control-sm"  id="descricao"  formControlName="descricao" rows="2"></textarea>
     </div>
 
-    <button  class="btn-sm btn-primary">Salvar</button>
+    <button class="btn btn-sm btn-primary">Salvar</button>
 
   </form>
 </div>

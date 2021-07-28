@@ -4,11 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BootstrapModule } from "././plugins/bootstrap/bootstrap.module";
+import { ConfirmModalComponent } from './Components/confirm-modal/confirm-modal.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ConfirmModalComponent
+  ],
   imports: [
     HttpClientModule,
     RouterModule,
@@ -26,7 +29,10 @@ import { BootstrapModule } from "././plugins/bootstrap/bootstrap.module";
     BootstrapModule,
     TooltipModule
   ],
-  providers: []
+  providers: [],
+  entryComponents: [
+    ConfirmModalComponent
+  ]
 
 })
 export class SharedModule { }

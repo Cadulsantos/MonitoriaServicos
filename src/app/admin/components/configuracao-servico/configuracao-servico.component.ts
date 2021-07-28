@@ -9,7 +9,7 @@ import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {map, startWith, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-configuracao-servico',
@@ -24,30 +24,34 @@ export class ConfiguracaoServicoComponent implements OnInit {
   reload: Boolean;
 
 //chiplist
-selectable = true;
+  selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Lemon'];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  tagsServico: string[];
+  tagsDisponiveis: string[];
+  todasAsTags: string[] ;
 //chiplist
 
-@ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+@ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
 
   constructor(
     public bsModalRef: BsModalRef,
     private fb: FormBuilder,
     private modalService: BsModalService,
     private servicoService: ServicosService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.criaFormServico();
 
+    // this.fruitCtrl.setValue(null);
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+      // tap(console.log),
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.tagsDisponiveis.slice()));
   }
 
   criaFormServico() {
@@ -58,6 +62,9 @@ selectable = true;
       descricao: this.servico.descricao
       // tags: this.servico.tags
     });
+
+    this.tagsServico = this.servico.tags;
+    this.tagsDisponiveis = this.todasAsTags.filter(o => this.tagsServico.indexOf(o) < 0);
   }
 
   SalvaAlteracoes() {
@@ -65,6 +72,7 @@ selectable = true;
     this.servico.ativo = this.formServico.value.statusServico;
     this.servico.periodicidade = this.formServico.value.periodicidade;
     this.servico.descricao = this.formServico.value.descricao;
+    this.servico.tags = this.tagsServico;
 
     this.servicoService
       .alterarServico(this.servico)
@@ -94,39 +102,56 @@ selectable = true;
 
 //chiplist
 
-add(event: MatChipInputEvent): void {
-  const value = (event.value || '').trim();
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
 
-  // Add our fruit
-  if (value) {
-    this.fruits.push(value);
+    // Add our fruit
+    if (value) {
+      this.tagsServico.push(value);
+    }
+
+    // Clear the input value
+    console.log(event.input.value)
+    event.input.value = "";
+    console.log(event.input.value)
+
+    this.fruitCtrl.setValue(null);
   }
 
-  // Clear the input value
-  // event.chipInput!.clear();
-  event.input = null;
+  remove(tag: string): void {
+    const index = this.tagsServico.indexOf(tag);
 
-  this.fruitCtrl.setValue(null);
-}
+    if (index >= 0) {
+      this.tagsServico.splice(index, 1);
+    }
 
-remove(fruit: string): void {
-  const index = this.fruits.indexOf(fruit);
+    let tagExist = this.tagsDisponiveis.filter((x) => x === tag).length > 0;
 
-  if (index >= 0) {
-    this.fruits.splice(index, 1);
+    if(!tagExist)
+      this.tagsDisponiveis.push(tag);
   }
-}
 
-selected(event: MatAutocompleteSelectedEvent): void {
-  this.fruits.push(event.option.viewValue);
-  this.fruitInput.nativeElement.value = '';
-  this.fruitCtrl.setValue(null);
-}
+  selected(event: MatAutocompleteSelectedEvent): void {
 
-private _filter(value: string): string[] {
-  const filterValue = value.toLowerCase();
+    let tag = event.option.viewValue;
 
-  return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
-}
+    let tagExist = this.tagsDisponiveis.filter((x) => x === tag).length > 0;
+    if(tagExist)
+    {
+      var index = this.tagsDisponiveis.indexOf(tag);
+      if(index !== -1 )
+        this.tagsDisponiveis.splice(index, 1)
+    }
+
+    this.tagsServico.push(tag);
+    this.tagInput.nativeElement.value = '';
+    this.fruitCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+
+    const filterValue = value.toLowerCase();
+    return this.tagsDisponiveis.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
 
 }
