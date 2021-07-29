@@ -2,13 +2,13 @@
       <div class="modal-content border-0" >
         <div class="modal-header shadow-sm">
           <h2 class="modal-title pull-left fw-bold"> {{servico.nomeArgument}}</h2>
-          <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+          <button type="button" class="close" aria-label="Close" (click)="onClose()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <button type="button"  class="btn btn-outline-secondary  btn-sm"  style="margin-bottom: 20px;"
-          (click)="openConfirmResolv(confirmResolvAll, logsErro[0])" >
+          (click)="confirmResolvAllLogs(logsErro[0])" >
             Resolver todos
           </button>
           <div class="table-responsive">
@@ -18,7 +18,7 @@
                   <th scope="col">Messagem</th>
                   <th scope="col" style="width: 18%;" class="text-center">Data do Erro</th>
                   <th scope="col" class="text-center">Quantidade</th>
-                  <th scope="col" class="text-center">Resolvido</th>
+                  <th scope="col" class="text-center">Solucionar</th>
                 </tr>
               </thead>
               <tbody>
@@ -29,11 +29,16 @@
                   <td class="text-center">
                     <!-- <img style="width: 25px" *ngIf="item.resolvido == true" src="assets/img/green_check.png" />
                     <button type="button" (click)="openConfirmResolv(confirmResolv, item)" *ngIf="item.resolvido == false" class="btn btn-danger btn-sm">Resolver </button> -->
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" style="color: #28a745;" value="item.resolvido" type="checkbox" id="checkSoucionaErro" (click)="openConfirmResolv(confirmResolv, item)">
-                      <!-- <input class="form-check-input" style="color: #28a745;" value="item.resolvido" type="checkbox" id="checkSoucionaErro" (click)="openConfirm(item)"> -->
+                    <!-- <div class="form-check form-switch">
+
+                      <input class="form-check-input" style="color: #28a745;" value="item.resolvido" type="checkbox" id="checkSoucionaErro" (click)="openConfirm(item)">
                       <label class="form-check-label" for="checkSoucionaErro"></label>
-                    </div>
+                    </div> -->
+
+                    <button  class="material-icons btn btn-sm btn-success rounded-pill" tooltip="Solucionar erro" (click)="confirmResolvLog(item)"> done</button>
+                    <!-- <button class="btn btn-sm btn-success rounded-pill" tooltip="Solucionar erro" (click)="openConfirm(item)">
+                      <span  class="material-icons text-center"> check_circle </span>
+                    </button> -->
                   </td>
                 </tr>
               </tbody>
@@ -46,30 +51,8 @@
       </div>
     </div>
 
-  <ng-template #confirmResolv >
-    <div class="modal-header header">
-      <h4 class="modal-title pull-left"> Deseja solucionar este erro?</h4>
-      <button
-        type="button"
-        class="close pull-right"
-        aria-label="Close"
-        (click)="modalRef.hide()"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body" style="width: 100%;">
-      <tr class="d-flex justify-content-around">
-        <td>
-          <button type="button" class="btn btn-success" (click)="solucionarErro()" ><i>Sim</i></button>
-        </td>
-        <td>
-          <button type="button" class="btn btn-danger" (click)="modalRef.hide()"><i>Não</i></button>
-        </td>
-      </tr>
-    </div>
-  </ng-template>
 
+<!--
   <ng-template #confirmResolvAll >
     <div class="modal-header header">
       <h4 class="modal-title pull-left"> Deseja solucionar todos os erros?</h4>
@@ -92,4 +75,4 @@
         </td>
       </tr>
     </div>
-  </ng-template>
+  </ng-template> -->

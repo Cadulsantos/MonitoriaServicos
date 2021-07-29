@@ -3,7 +3,7 @@ import { debounceTime, distinctUntilChanged, map, tap, timeInterval, timestamp }
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
-import { Subscription } from "rxjs";
+import { EMPTY, Subscription } from "rxjs";
 import { delay, take } from 'rxjs/operators';
 import { ConfiguracaoServicoComponent } from '../../components/configuracao-servico/configuracao-servico.component';
 import { LogErroServicoComponent } from '../../components/log-erro-servico/log-erro-servico.component';
@@ -22,7 +22,7 @@ import { timer } from 'rxjs';
 })
 export class ServicosComponent implements OnInit {
   public modalRef: BsModalRef;
-  abreFiltro: boolean = false;
+
   servicos: servico[] = [];
   servicosShare: servico[] = [];
 
@@ -226,16 +226,12 @@ export class ServicosComponent implements OnInit {
   //   // this.servicosShare = this.servicos;
   // }
 
-  abreFiltroOnClick() {
-    this.abreFiltro = !this.abreFiltro;
-    console.log(this.abreFiltro);
-  }
 
   logsErroServicoOnClick(servico: servico) {
 
-    this.modalService.onHidden.pipe(take(1)).subscribe((res: any) => {
-      this.filtra();
-    });
+    // this.modalService.onHidden.pipe(take(1)).subscribe((res: any) => {
+    //   this.filtra();
+    // });
 
     this.modalRef = this.modalService.show(LogErroServicoComponent, {
       animated: true,
@@ -246,6 +242,17 @@ export class ServicosComponent implements OnInit {
         servico: servico
       }
     });
+
+    const result$ = (<LogErroServicoComponent>this.modalRef.content).reload;
+    result$.asObservable()
+    .pipe(
+      take(1),
+    )
+    .subscribe(
+      result =>
+        result ? this.filtra() : EMPTY
+    );
+
   }
 
   logsExecucaoServicoOnClick(servico: servico) {

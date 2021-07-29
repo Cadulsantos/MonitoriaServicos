@@ -1,4 +1,4 @@
-import { EMPTY } from 'rxjs';
+import { EMPTY, Subject } from 'rxjs';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -16,11 +16,12 @@ import { AlertModalService } from 'src/app/shared/service/alert-modal.service';
   styleUrls: ['./log-erro-servico.component.scss']
 })
 export class LogErroServicoComponent implements OnInit {
-  modalRef: BsModalRef;
+
   servico: servico;
   logsErro: logErroServico[] = [];
   logErroServico: logErroServico;
-  reload: boolean;
+
+  reload: Subject<boolean>;
 
   //paginação
   pageSize : number;
@@ -31,7 +32,6 @@ export class LogErroServicoComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
     // private router: ActivatedRoute,
-    private modalService: BsModalService,
     private alertService : AlertModalService,
     private logErroService: LogErroServicoService
   ) {}
@@ -39,11 +39,12 @@ export class LogErroServicoComponent implements OnInit {
   ngOnInit() {
     // this.idServico =  this.router.snapshot.paramMap.get('idServico');
     // this.origem = this.router.snapshot.paramMap.get('origem');
-
+    this.reload = new Subject();
     this.pageSize = 10;
     this.page = 1;
 
     this.getLogErroServico();
+
   }
 
   pageChanged(event: PageChangedEvent): void {
@@ -61,7 +62,7 @@ export class LogErroServicoComponent implements OnInit {
       this.collectionSize = value;
 
       if( this.collectionSize === 0){
-        this.bsModalRef.hide();
+        this.onClose();
       }
       else if(this.collectionSize < this.pageSize){
         this.showPag = true
@@ -77,85 +78,86 @@ export class LogErroServicoComponent implements OnInit {
   Loading.hide();
 }
 
-  // resolverLog(logErroServico : logErroServico)
-  // {
-  // var log = this.logErroService.atualizaStatusLog(logErroServico);
-  //   //  console.log(log);
-  // }
-
-  openConfirmResolv(
-    template: TemplateRef<any>,
-    logErroServico: logErroServico
-  ) {
-    // this.modalService.onHidden.pipe(take(1)).subscribe((res : any) =>{
-    // this.reload = this.modalRef.content.reload;
-    // this.bsModalRef.hide();
-    // });
-
-    this.modalService.onHidden.pipe(take(1)).subscribe((res: any) => {
-
-      console.log("apertou não");
-      this.getLogErroServico();
-      // this.logErroServico.resolvido = false;
-    });
-
-    console.log("openConfirmResolv");
-    this.modalRef = this.modalService.show(template);
-    this.logErroServico = logErroServico;
+  confirmResolvAllLogs(logErroServico: logErroServico){
+    const result$ = this.alertService.showConfirm('Confirmação', 'Deseja solucionar todos os erros?', 'Sim' , 'Não');
+    result$.asObservable()
+    .pipe(
+      take(1),
+      // switchMap()
+    )
+    .subscribe(
+      result =>
+        result ? this.solucionarTodosErros(logErroServico) : EMPTY
+      // success => {
+      //   this.onRefresh()
+      // },
+      // error => {
+      //   this.alertService.showAlertDanger('Erro ao Remover curso. Tente novamente mais tarde.')
+      // }
+    );
   }
 
 
-  openConfirm(logErroServico: logErroServico){
-    const result$ = this.alertService.showConfirm('Confirmação', 'Deseja remover este erro?', 'Sim' , 'Não');
-    // result$.asObservable()
-    // .pipe(
-    //   take(1),
-    //   switchMap((result : boolean) => {
-    //     console.log(result)
-    //   }) //result ? this.solucionarErro() : EMPTY
-    // )
-    // .subscribe(
-    //   // success => {
-    //   //   this.onRefresh()
-    //   // },
-    //   // error => {
-    //   //   this.alertService.showAlertDanger('Erro ao Remover curso. Tente novamente mais tarde.')
-    //   // }
-    // );
+  confirmResolvLog(logErroServico: logErroServico){
+    const result$ = this.alertService.showConfirm('Confirmação', 'Deseja solucionar este erro?', 'Sim' , 'Não');
+    result$.asObservable()
+    .pipe(
+      take(1),
+      // switchMap()
+    )
+    .subscribe(
+      result =>
+        result ? this.solucionarErro(logErroServico) : EMPTY
+      // success => {
+      //   this.onRefresh()
+      // },
+      // error => {
+      //   this.alertService.showAlertDanger('Erro ao Remover curso. Tente novamente mais tarde.')
+      // }
+    );
   }
 
-  solucionarErro() {
-    // Loading.show();
-    this.logErroService
-      .atualizaStatusLog(this.logErroServico)
-      .subscribe((has: Boolean) => {
-        if (has) {
-          this.reload = true;
-          this.bsModalRef.hide();
-          this.getLogErroServico();
-        } else this.reload = false;
-      });
-    //  Loading.hide();
-    this.modalRef.hide();
-  }
-
-
-
-  solucionarTodosErros(){
+  solucionarErro(logErroServico: logErroServico) {
     Loading.show();
+    this.logErroService
+      .atualizaStatusLog(logErroServico)
+      .subscribe(
+        success => {
+          this.getLogErroServico();
+          },
+          error => {
+            console.log(console.error);
+          }
 
-    this.logErroService.solucionarErroServico(this.logErroServico.servicoId)
-    .subscribe((has: Boolean) =>{
-      if (has) {
-        this.reload = true;
-        this.bsModalRef.hide();
-         this.modalRef.hide();
-      }
-      else{
-        // this.getLogErroServico(this.servico.id, this.servico.origem);
-        this.getLogErroServico();
-        this.reload = false;
-      }
-    });
+      );
+     Loading.hide();
+    // this.modalRef.hide();
   }
+
+
+  solucionarTodosErros(logErroServico: logErroServico){
+    Loading.show();
+    this.logErroService.solucionarErroServico(logErroServico.servicoId)
+    .subscribe(success => {
+      this.onConfirm();
+      },
+      error => {
+        console.log(console.error);
+      });
+  }
+
+  onClose() {
+    this.confirmAndClose(false);
+  }
+
+  onConfirm() {
+    this.confirmAndClose(true);
+  }
+
+  private confirmAndClose(value: boolean){
+    console.log(value);
+    this.reload.next(value);
+    this.bsModalRef.hide();
+  }
+
 }
